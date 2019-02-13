@@ -9,11 +9,8 @@ rm docs/searchindex.js
 rm docs/.nojekyll
 
 mkdir docs
-mkdir html
-cp -r website_source/source html/.
-cd html
-sphinx-build -b html source ../docs
-cd ../docs
+cp -r website_source/source docs/.
+cd docs
+sphinx-build -b html source .
 touch .nojekyll
 cd ..
-rm -r html
