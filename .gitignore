@@ -9,3 +9,7 @@ mst/*.so
 # Ignore Mac DS_Store files
 *.DS_Store
 .DS_Store
+
+# Ignore ipynb checkpoints
+*.ipynb_checkpoints/*
+.ipynb_checkpoints/*
