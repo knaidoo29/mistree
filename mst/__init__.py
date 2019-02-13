@@ -24,10 +24,6 @@ from .density import variable_vs_density
 from .graph import graph2data
 from .graph import data2graph
 
-# parallel class function
-
-from .parallel_class import GetXtraMST
-
 # scale cut functions
 
 from .scale_cut import graph_scale_cut
@@ -53,7 +49,3 @@ from .tomo import convert_tomo_knn_length2angle
 from .trim import find_edge4point
 from .trim import remove_tree_tips
 from .trim import trim_tree
-
-# utility functions
-
-from .utility import create_folder

@@ -1,0 +1,633 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Lévy Flight &mdash;   documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Minimum Spanning Tree" href="minimum_spanning_tree.html" />
+    <link rel="prev" title="Introduction" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/mistree_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lévy Flight</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial">Tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#d-vs-3d">2D vs 3D</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#d">2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3D</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#periodic-boundary">Periodic boundary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#random-walk-models">Random Walk Models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Lévy Flight</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adjusted-levy-flight">Adjusted Lévy Flight</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-random-walk">Other Random Walk</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="minimum_spanning_tree.html">Minimum Spanning Tree</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html"></a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Lévy Flight</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/levy_flight.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="levy-flight">
+<h1>Lévy Flight<a class="headerlink" href="#levy-flight" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="tutorial">
+<h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
+<p>Random walk distributions draw step sizes randomly from a given probability
+distribution function. The walk begins at a point and ‘steps’ to a new point in a random
+direction.</p>
+<p>These types of distributions were invented by Benoît Mandelbrot. The Lévy flight
+distribution is a specific random walk distribution useful for creating fractal
+distribution which exhibits power law clustering.</p>
+<div class="section" id="d-vs-3d">
+<h3>2D vs 3D<a class="headerlink" href="#d-vs-3d" title="Permalink to this headline">¶</a></h3>
+<p>In these example we will look only at Lévy flight distribution, first in 2D
+and then 3D. All other parameters are kept to their default values. We will
+explore what the other parameters do later.</p>
+<div class="section" id="d">
+<h4>2D<a class="headerlink" href="#d" title="Permalink to this headline">¶</a></h4>
+<p>In this example we show how to generate a random walk distribution in 2D. Since
+the default setting is in 3D we will need to specify that we want this in 2D.</p>
+<p>Before this we need to first import some basic modules for plotting and LyTree itself.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">mistree</span> <span class="kn">as</span> <span class="nn">mist</span>
+</pre></div>
+</div>
+<p>To generate a 2D Lévy flight sample, we will need to first specify how many points
+we want in our random walk. This is given below by a parameter we call <code class="docutils literal notranslate"><span class="pre">size</span></code>.
+Be careful with the size, if you make this too large, because of the periodic
+boundary conditions, this will result in a distribution that is no different to a
+random distribution!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">50000</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will give you a clustered distribution which looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/2D_example.png"><img alt="_images/2D_example.png" class="align-center" src="_images/2D_example.png" style="width: 450.0px; height: 450.0px;" /></a>
+</div>
+<div class="section" id="id1">
+<h4>3D<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Creating a 3D distribution is even easier, since this is the default setting for
+all the random walk functions. Like before we again specify the <code class="docutils literal notranslate"><span class="pre">size</span></code> and generate
+the distribution in the following way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">50000</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We plot the 3 dimensions across 3 plains: X vs Y, X vs Z and Z vs Y:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">as</span> <span class="nn">gridspec</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.075</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.075</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Z$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Z$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/3D_example.png"><img alt="_images/3D_example.png" class="align-center" src="_images/3D_example.png" style="width: 600.0px; height: 600.0px;" /></a>
+</div>
+</div>
+<div class="section" id="periodic-boundary">
+<h3>Periodic boundary<a class="headerlink" href="#periodic-boundary" title="Permalink to this headline">¶</a></h3>
+<p>All random walk distributions created by LyTree have periodic boundary conditions
+by default. This means that the box is repeated infinitely in all dimensions. This
+is a common procedure used in N-Body simulations. When a particle steps out of the
+boundary it actually re-enters the box from the other side. The size of the box can
+be specified by setting the <code class="docutils literal notranslate"><span class="pre">box_size</span></code> in any of the Lévy flight functions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># default box_size=75.</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">box_size</span><span class="o">=</span><span class="mf">75.</span><span class="p">)</span>
+
+<span class="c1"># changing the box_size=100.</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">box_size</span><span class="o">=</span><span class="mf">100.</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, if you want
+to turn this off you will need to set <code class="docutils literal notranslate"><span class="pre">periodic=False</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Which we plot as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/2D_example_no_periodic_boundary.png"><img alt="_images/2D_example_no_periodic_boundary.png" class="align-center" src="_images/2D_example_no_periodic_boundary.png" style="width: 450.0px; height: 450.0px;" /></a>
+</div>
+<div class="section" id="random-walk-models">
+<h3>Random Walk Models<a class="headerlink" href="#random-walk-models" title="Permalink to this headline">¶</a></h3>
+<p>Random walk distributions can be made by one of the Lévy flight functions:
+<code class="docutils literal notranslate"><span class="pre">get_levy_flight</span></code> or <code class="docutils literal notranslate"><span class="pre">get_adjusted_levy_flight</span></code> which creates a distribution
+of <em>Lévy flight</em> and <em>adjusted Lévy flight</em> distributions, respectively. Both of
+these functions interact with the function <code class="docutils literal notranslate"><span class="pre">get_random_flight</span></code> which can be used
+to generate a random walk with your own specified probability distribution function
+(PDF). Below we will explain in detail how these distributions work and what the
+parameters do in each model.</p>
+<div class="section" id="id2">
+<h4>Lévy Flight<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Lévy flights are defined with a power law PDF and a cumulative distribution
+function (CDF) given by,</p>
+<div class="math">
+<p><img src="_images/math/f72d11ef5c0e1ab957c92fb43454f48ddbb0f651.png" alt="\begin{equation*}
+CDF(t) = \left\{ \begin{array}{lcl}
+0  &amp; \mbox{for} &amp; t &lt; t_{0} \\
+1 - \left(\frac{t}{t_{0}}\right)^{-\alpha} &amp; \mbox{for} &amp; t\geq t_{0}
+\end{array} \right.
+\end{equation*}"/></p>
+</div><p>Where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><img class="math" src="_images/math/5ec053cf70dc1c98cc297322250569eda193e7a4.png" alt="t"/> – step sizes</li>
+<li><img class="math" src="_images/math/6b14519f0e48e358e3ca7f919b52bf51559f687b.png" alt="t_{0}"/> – minimum step size.</li>
+<li><img class="math" src="_images/math/877d234f4cec6974ce218fc2e975a486a7972dfd.png" alt="\alpha"/> – defines the slope of power law.</li>
+</ul>
+</div></blockquote>
+<p>The PDF for the Lévy flight is given by,</p>
+<div class="math">
+<p><img src="_images/math/aef2c34c509afed90de77fa7a798ae69c23a065b.png" alt="\begin{equation*}
+PDF(t) = \left\{ \begin{array}{lcl}
+0  &amp; \mbox{for} &amp; t &lt; t_{0} \\
+\alpha \frac{t_{0}^{\alpha}}{t^{1+\alpha}} &amp; \mbox{for} &amp; t\geq t_{0}
+\end{array} \right.
+\end{equation*}"/></p>
+</div><p>If we are to change <img class="math" src="_images/math/6b14519f0e48e358e3ca7f919b52bf51559f687b.png" alt="t_{0}"/>, which is the minimum step length, to shorter
+values this results in there being a higher probability of smaller step sizes.</p>
+<a class="reference internal image-reference" href="_images/levy_flight_changing_t0.png"><img alt="_images/levy_flight_changing_t0.png" class="align-center" src="_images/levy_flight_changing_t0.png" style="width: 480.0px; height: 360.0px;" /></a>
+<p>We now generate a set of realisations with these parameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">50000</span> <span class="c1"># how many particles in the distribution</span>
+
+<span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">t_0</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span>
+<span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">t_0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span>
+<span class="n">x3</span><span class="p">,</span> <span class="n">y3</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">t_0</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which are plotted:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">15.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.025</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.925</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.125</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t_{0}=0.01$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t_{0}=0.1$&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t_{0}=1.$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/levy_flight_changing_t0_distribution.png"><img alt="_images/levy_flight_changing_t0_distribution.png" class="align-center" src="_images/levy_flight_changing_t0_distribution.png" style="width: 750.0px; height: 250.0px;" /></a>
+<p>If we instead vary <img class="math" src="_images/math/877d234f4cec6974ce218fc2e975a486a7972dfd.png" alt="\alpha"/> this changes the gradient of the slope.</p>
+<a class="reference internal image-reference" href="_images/levy_flight_changing_alpha.png"><img alt="_images/levy_flight_changing_alpha.png" class="align-center" src="_images/levy_flight_changing_alpha.png" style="width: 480.0px; height: 360.0px;" /></a>
+<p>We now generate a set of realisations with these parameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">50000</span> <span class="c1"># how many particles in the distribution</span>
+
+<span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">t_0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span>
+<span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">t_0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span>
+<span class="n">x3</span><span class="p">,</span> <span class="n">y3</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_levy_flight</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">t_0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Which we then plot:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">15.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.025</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.925</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.125</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\alpha=1$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\alpha=1.5$&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\alpha=2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/levy_flight_changing_alpha_distribution.png"><img alt="_images/levy_flight_changing_alpha_distribution.png" class="align-center" src="_images/levy_flight_changing_alpha_distribution.png" style="width: 750.0px; height: 250.0px;" /></a>
+<p>These two parameters can both be changed to affect the amount of clustering. But since
+<img class="math" src="_images/math/877d234f4cec6974ce218fc2e975a486a7972dfd.png" alt="\alpha"/> is directly related to the two point correlation function it is often
+considered to be the more important parameter.</p>
+</div>
+<div class="section" id="adjusted-levy-flight">
+<h4>Adjusted Lévy Flight<a class="headerlink" href="#adjusted-levy-flight" title="Permalink to this headline">¶</a></h4>
+<p>We developed a move flexible Lévy flight model to better deal with small scales.
+Normal Lévy flight distributions are able to produce power law 2PCF, however below
+<img class="math" src="_images/math/6b14519f0e48e358e3ca7f919b52bf51559f687b.png" alt="t_{0}"/> the 2PCF plateaus. To be able to control what happens below this scale
+we instead use a Lévy flight model which has a CDF:</p>
+<div class="math">
+<p><img src="_images/math/468ce2f6cc4d2cbdbae6874572186a27facf0136.png" alt="\begin{equation*}
+CDF(t) = \left\{ \begin{array}{lcl}
+0  &amp; \mbox{for} &amp; t &lt; t_{s} \\
+\beta\left(\frac{t-t_{s}}{t_{0}-t_{s}}\right)^{\gamma}&amp; \mbox{for} &amp; t_{s} \leq t &lt; t_{0}\\
+(1-\beta)\left[1 - \left(\frac{t}{t_{0}}\right)^{-\alpha}\right]+\beta &amp; \mbox{for} &amp; t\geq t_{0}
+\end{array} \right.
+\end{equation*}"/></p>
+</div><p>which we call the <em>adjusted Levy flight</em>, where <img class="math" src="_images/math/6b14519f0e48e358e3ca7f919b52bf51559f687b.png" alt="t_{0}"/> and <img class="math" src="_images/math/877d234f4cec6974ce218fc2e975a486a7972dfd.png" alt="\alpha"/>
+play the same role as they do in the normal Lévy flight distribution. The CDF
+is built of two CDFs: (1) the normal Lévy flight part which operates for step sizes
+larger than <img class="math" src="_images/math/6b14519f0e48e358e3ca7f919b52bf51559f687b.png" alt="t_{0}"/> and (2) the adjusted part operates between step sizes
+<img class="math" src="_images/math/e61059085197d493281741274e95b4ec13853cd1.png" alt="t_{s}"/> and <img class="math" src="_images/math/6b14519f0e48e358e3ca7f919b52bf51559f687b.png" alt="t_{0}"/> where <img class="math" src="_images/math/81fc952dd0be2776d13ac7c0ca923fe6ccae8f35.png" alt="t_{s} &lt; t_{0}"/>. Unlike the normal
+Lévy flight distribution, which transitions from a <img class="math" src="_images/math/0b0edca30a50ef466e22693012728ba1622eadb8.png" alt="PDF(t&lt;t_{0}) = 0"/> to a
+peak at <img class="math" src="_images/math/c68d6431775a34a75492e335d0a3551d2d2d27bf.png" alt="PDF(t_{0})"/> the adjusted Lévy flight had a gradual rise in between
+<img class="math" src="_images/math/e61059085197d493281741274e95b4ec13853cd1.png" alt="t_{s}"/> and <img class="math" src="_images/math/6b14519f0e48e358e3ca7f919b52bf51559f687b.png" alt="t_{0}"/>. The other parameters have the following roles:</p>
+<blockquote>
+<div><ul class="simple">
+<li><img class="math" src="_images/math/e61059085197d493281741274e95b4ec13853cd1.png" alt="t_{s}"/> – the minimum step sizes.</li>
+<li><img class="math" src="_images/math/410a9d0df9c135dd73b269cba7ef04dcfd932b1f.png" alt="\beta"/> – the fraction of steps between <img class="math" src="_images/math/e61059085197d493281741274e95b4ec13853cd1.png" alt="t_{s}"/> and <img class="math" src="_images/math/6b14519f0e48e358e3ca7f919b52bf51559f687b.png" alt="t_{0}"/>.</li>
+<li><img class="math" src="_images/math/3666981dc77862de77b6ecfcb64aad59b425cbaf.png" alt="\gamma"/> – defines the gradient of the rise.</li>
+</ul>
+</div></blockquote>
+<p>The PDF is thus defined as:</p>
+<div class="math">
+<p><img src="_images/math/62e5e4a33a27570ace910eaa880d196c520b9a23.png" alt="\begin{equation*}
+CDF(t) = \left\{ \begin{array}{lcl}
+0  &amp; \mbox{for} &amp; t &lt; t_{s} \\
+\frac{\beta\gamma t}{(t-t_{s})}\left(\frac{t-t_{s}}{t_{0}-t_{s}}\right)^{\gamma}&amp; \mbox{for} &amp; t_{s} &lt; t &lt; t_{0}\\
+\frac{\alpha(1-\beta)}{t_{0}}t^{-(1+\alpha)} &amp; \mbox{for} &amp; t\geq t_{0}
+\end{array} \right.
+\end{equation*}"/></p>
+</div><p>Below we show what happens to the CDF of the adjusted Lévy flight distribution if we
+vary these parameters individually whilst keeping all other parameters constant.</p>
+<a class="reference internal image-reference" href="_images/adjusted_levy_flight_cdf.png"><img alt="_images/adjusted_levy_flight_cdf.png" class="align-center" src="_images/adjusted_levy_flight_cdf.png" style="width: 750.0px; height: 250.0px;" /></a>
+</div>
+<div class="section" id="other-random-walk">
+<h4>Other Random Walk<a class="headerlink" href="#other-random-walk" title="Permalink to this headline">¶</a></h4>
+<p>To create a flight distribution with a user defined step size distribution. You will
+need to first generate a distribution of step sizes. To do this you will need to
+invert the CDF of the distribution. Once you have a distribution of step sizes
+you can pass this to the <code class="docutils literal notranslate"><span class="pre">get_random_flight</span></code> function.</p>
+<p>We will step you through how to do this using a step size distribution which follows
+a log normal distribution.</p>
+<div class="math">
+<p><img src="_images/math/f7a3262f8f76fd4ffefbb1da97f5317df0f48524.png" alt="CDF(t) = \frac{1}{2} + \frac{1}{2} {\rm erf} \left[\frac{\ln t -\mu}{\sqrt{2}\sigma}\right]"/></p>
+</div><p>To generate a random log normal distribution we invert this function giving us:</p>
+<div class="math">
+<p><img src="_images/math/e9876f77960d79f06ec6da73f0d51b06b2589dc0.png" alt="t = \exp \left[\sqrt{2}\sigma\ {\rm erf}^{-1}(2u-1) + \mu\right]"/></p>
+</div><p>Where <img class="math" src="_images/math/11d2a5c8e08284655b36fe5bd8ba27a70aafb848.png" alt="CDF(t)=u"/>. Here, <code class="docutils literal notranslate"><span class="pre">u</span></code> is a randomly drawn number between 0 and 1.
+We can generate this in the following way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erfinv</span>
+<span class="kn">import</span> <span class="nn">mistree</span> <span class="kn">as</span> <span class="nn">mist</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mi">50000</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+
+<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">erfinv</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">u</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span><span class="o">+</span><span class="n">mu</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mist</span><span class="o">.</span><span class="n">get_random_flight</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">box_size</span><span class="o">=</span><span class="mf">75.</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/levy_log_normal.png"><img alt="_images/levy_log_normal.png" class="align-center" src="_images/levy_log_normal.png" style="width: 525.0px; height: 525.0px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>Indepth documentation on the functions to generate Lévy Flight-like simulations are provided below.</p>
+<dl class="function">
+<dt id="get_random_flight">
+<code class="descname">get_random_flight</code><span class="sig-paren">(</span><em>steps</em><span class="optional">[</span>, <em>mode='3D'</em>, <em>box_size=75.</em>, <em>periodic=True</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#get_random_flight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random realisation of a ‘Levy flight’-like distribution. The random step step sizes
+are defined by the user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>steps</strong> (<em>array</em>) – Distribution of step sizes defines by the user.</li>
+<li><strong>mode</strong> (<em>str</em>) – ‘2D’ or ‘3D’ – Defines whether the distribution is defined in 2D or 3D cartesian coordinates.</li>
+<li><strong>box_size</strong> (<em>float</em>) – Length of the periodic box across one axis.</li>
+<li><strong>periodic</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code> then this sets periodic boundary condition on the Lévy flight realisation. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, the box_size parameter is ignored.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>x</strong>, <strong>y</strong>, <strong>z</strong> <em>(array)</em> – Distribution of random walk particles. <strong>z</strong> is only outputted if this is a 3D distribution.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_levy_flight">
+<code class="descname">get_levy_flight</code><span class="sig-paren">(</span><em>size</em><span class="optional">[</span>, <em>periodic=True</em>, <em>box_size=75.</em>, <em>t_0=0.2</em>, <em>alpha=1.5</em>, <em>mode='3D'</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#get_levy_flight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random realisation of a Levy flight distribution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>size</strong> (<em>int</em>) – Number of points.</li>
+<li><strong>mode</strong> (<em>str</em>) – ‘2D’ or ‘3D’ – Defines whether the distribution is defined in 2D or 3D cartesian coordinates.</li>
+<li><strong>box_size</strong> (<em>float</em>) – Length of the periodic box across one axis.</li>
+<li><strong>periodic</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code> then this sets periodic boundary condition on the Lévy flight realisation. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, the box_size parameter is ignored.</li>
+<li><strong>t_0</strong> (<em>float</em>) – Levy flight parameter, minimum step size.</li>
+<li><strong>alpha</strong> (<em>float</em>) – Levy flight parameter, step size power law slope.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>x</strong>, <strong>y</strong>, <strong>z</strong> (<em>array</em>) – Distribution of Levy flight particles. <strong>z</strong> is only outputted if this is a 3D distribution.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_adjusted_levy_flight">
+<code class="descname">get_adjusted_levy_flight</code><span class="sig-paren">(</span><em>size</em><span class="optional">[</span>, <em>mode='3D'</em>, <em>periodic=True</em>, <em>box_size=75.</em>, <em>t_0=0.325</em>, <em>t_s=0.015</em>, <em>alpha=1.5</em>, <em>beta=0.45</em>, <em>gamma=1.3</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#get_adjusted_levy_flight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random realisation of an adjusted Levy flight (ALF) distribution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>size</strong> (<em>int</em>) – Number of points.</li>
+<li><strong>mode</strong> (<em>str</em>) – ‘2D’ or ‘3D’ – Defines whether the distribution is defined in 2D or 3D cartesian coordinates.</li>
+<li><strong>box_size</strong> (<em>float</em>) – Length of the periodic box across one axis.</li>
+<li><strong>periodic</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code> then this sets periodic boundary condition on the Lévy flight realisation. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, the box_size parameter is ignored.</li>
+<li><strong>t_0</strong> (<em>float</em>) – ALF parameter, minimum step size for Levy flight component.</li>
+<li><strong>alpha</strong> (<em>float</em>) – ALF parameter, step size power law slope.</li>
+<li><strong>t_s</strong> (<em>float</em>) – ALF parameter, minimum step size for adjusted component.</li>
+<li><strong>beta</strong> (<em>float</em>) – ALF parameter, fraction of steps below <code class="docutils literal notranslate"><span class="pre">t_0</span></code>.</li>
+<li><strong>gamma</strong> (<em>float</em>) – ALF parameter, the gradient for the slow rise of the ALF’s cumulative distribution function.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>x</strong>, <strong>y</strong>, <strong>z</strong> (<em>array</em>) – Distribution of adjusted Levy flight particles. <strong>z</strong> is only outputted if this is a 3D distribution.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="minimum_spanning_tree.html" class="btn btn-neutral float-right" title="Minimum Spanning Tree" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Krishna Naidoo
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

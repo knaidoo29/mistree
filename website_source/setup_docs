@@ -1,0 +1,19 @@
+#!/bin/bash
+cd ..
+
+rm -r docs/source
+rm -r docs/_*
+rm docs/*.html
+rm docs/objects.inv
+rm docs/searchindex.js
+rm docs/.nojekyll
+
+mkdir docs
+mkdir html
+cp -r website_source/source html/.
+cd html
+sphinx-build -b html source ../docs
+cd ../docs
+touch .nojekyll
+cd ..
+rm -r html

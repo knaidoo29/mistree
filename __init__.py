@@ -22,11 +22,6 @@ from .mst.branches import get_branch_shape
 
 from .mst.construct import construct_mst
 
-# mst - data structure functions used for the parallel class
-
-from .mst.data_structure import get_saved_data
-from .mst.data_structure import get_mst_for_division
-
 # mst - density vs variable functions
 
 from .mst.density import variable_vs_density
@@ -35,10 +30,6 @@ from .mst.density import variable_vs_density
 
 from .mst.graph import graph2data
 from .mst.graph import data2graph
-
-# mst - parallel class function
-
-from .mst.parallel_class import GetXtraMST
 
 # mst - scale cut functions
 
@@ -65,7 +56,3 @@ from mst.tomo import convert_tomo_knn_length2angle
 from mst.trim import find_edge4point
 from mst.trim import remove_tree_tips
 from mst.trim import trim_tree
-
-# mst - utility functions
-
-from mst.utility import create_folder
