@@ -1,0 +1,8 @@
+*.pyc
+coordinates/*.pyc
+levy_flight/*.pyc
+mst/*.pyc
+
+levy_flight/*.so
+mst/*.so
+
