@@ -1,8 +1,9 @@
 """
-This is the public repository for MiSTree, a python package for constructing
-and analysing minimum spanning trees.
+MiSTree: Constructs the minimum spanning tree from a given data and runs
+subsequent analysis in python. 'branches.py' finds and measures the length
+and shapes of branches in from a given constructed MST.
 
-Copyright (C) 2019  Krishna Naidoo
+Copyright (C) 2019 Krishna Naidoo
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

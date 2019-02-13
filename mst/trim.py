@@ -1,7 +1,11 @@
+"""
+The functions described here are being tested and should not be used for now.
+"""
+
+
 import numpy as np
 import stats
 
-""" The functions described here are being tested and should not be used for now."""
 
 def find_edge4point(index, edge_index):
     """Finds the edges that are attached to an array of nodes.
