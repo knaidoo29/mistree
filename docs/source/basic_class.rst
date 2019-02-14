@@ -70,7 +70,7 @@ GetMST
 
         :param box_size: The size of the '2D' or '3D' box. Of course, this is only applicable if the data was constructed inside a box.
         :type box_size: float
-        :param sub_divisions: The number of divisions used to divide the data set in each axis. A significant boost in speed is achieved.
+        :param sub_divisions: The number of divisions used to divide the data set in each axis. Used for speeding up the branch finding algorithm when using many points (> 100000).
         :type sub_divisions: int
 
     .. method:: get_branch_edge_count()
