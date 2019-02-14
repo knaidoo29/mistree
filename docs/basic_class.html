@@ -350,7 +350,7 @@ the branch length.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>include_index</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code> will output the indexes of the nodes for each edge and the indexes of edges in each branch.</li>
-<li><strong>sub_divisions</strong> (<em>int</em>) – The number of divisions used to divide the data set in each axis.</li>
+<li><strong>sub_divisions</strong> (<em>int</em>) – The number of divisions used to divide the data set in each axis. Used for speeding up the branch finding algorithm when using many points (&gt; 100000).</li>
 <li><strong>k_neighbours</strong> (<em>int</em>) – The number of nearest neighbours to consider when creating the k-nearest neighbour graph.</li>
 <li><strong>scale_cut_length</strong> (<em>float</em>) – The minimum allowed length in the k_nearest_neighbour_graph.</li>
 <li><strong>partitions</strong> (<em>int</em>) – Number of partitions to divide the data set into.</li>

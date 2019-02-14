@@ -187,7 +187,8 @@ class GetMST:
         box_size : float, optional
             The size of the '2D' or '3D' box.
         sub_divisions : int, optional
-            The number of divisions used to divide the data set in each axis.
+            The number of divisions used to divide the data set in each axis. Used for speeding up the branch
+            finding algorithm when using many points (> 100000).
         """
         if sub_divisions is 1:
             branch_index, rejected_branch_index = branches.get_branch_index(self.edge_index, self.edge_degree)
@@ -323,7 +324,8 @@ class GetMST:
         include_index : bool, optional
             If True will output the indexes of the nodes for each edge and the indexes of edges in each branch.
         sub_divisions : int, optional
-            The number of divisions used to divide the data set in each axis.
+            The number of divisions used to divide the data set in each axis. Used for speeding up the branch
+            finding algorithm when using many points (> 100000).
         k_neighbours : int, optional
             The number of nearest neighbours to consider when creating the k-nearest neighbour graph.
         scale_cut_length : float, optional

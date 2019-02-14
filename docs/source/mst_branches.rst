@@ -24,7 +24,7 @@ branches
     the full data set and finding branches in each sub division and then completing branches that straddle across
     the divides.
 
-    :param sub_divisions: The number of divisions used to divide the data set in each axis. A significant boost in speed is achieved.
+    :param sub_divisions: The number of divisions used to divide the data set in each axis. Used for speeding up the branch finding algorithm when using many points (> 100000).
     :type sub_divisions: int
     :param edge_degree: The degree for the ends of each edge.
     :type edge_degree: array

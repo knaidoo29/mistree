@@ -124,7 +124,7 @@ GetMST
 
         :param include_index: If ``True`` will output the indexes of the nodes for each edge and the indexes of edges in each branch.
         :type include_index: bool
-        :param sub_divisions: The number of divisions used to divide the data set in each axis.
+        :param sub_divisions: The number of divisions used to divide the data set in each axis. Used for speeding up the branch finding algorithm when using many points (> 100000).
         :type sub_divisions: int
         :param k_neighbours: The number of nearest neighbours to consider when creating the k-nearest neighbour graph.
         :type k_neighbours: int

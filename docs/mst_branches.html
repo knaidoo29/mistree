@@ -205,7 +205,7 @@ the divides.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sub_divisions</strong> (<em>int</em>) – The number of divisions used to divide the data set in each axis. A significant boost in speed is achieved.</li>
+<li><strong>sub_divisions</strong> (<em>int</em>) – The number of divisions used to divide the data set in each axis. Used for speeding up the branch finding algorithm when using many points (&gt; 100000).</li>
 <li><strong>edge_degree</strong> (<em>array</em>) – The degree for the ends of each edge.</li>
 <li><strong>edge_index</strong> (<em>array</em>) – The node index of the ends of each edge.</li>
 <li><strong>box_size</strong> (<em>float</em>) – The size of the ‘2D’ or ‘3D’ box. Of course, this is only applicable if the data was constructed inside a box.</li>
