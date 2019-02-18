@@ -1,7 +1,4 @@
-"""
-The functions described here are being tested and should not be used for now.
-"""
-
+# The functions described here are being tested and should not be used for now.
 
 import numpy as np
 import stats
