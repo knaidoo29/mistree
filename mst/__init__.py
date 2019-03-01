@@ -10,11 +10,6 @@ from .branches import get_branch_shape
 
 from .construct import construct_mst
 
-# data structure functions used for the parallel class
-
-from .data_structure import get_saved_data
-from .data_structure import get_mst_for_division
-
 # density vs variable functions
 
 from .density import variable_vs_density
