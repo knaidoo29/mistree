@@ -1,4 +1,4 @@
-# 'get_mst_class.py' contains the main class function for constructing a minimum 
+# 'get_mst_class.py' contains the main class function for constructing a minimum
 # spanning tree from a given set of points.
 
 import os

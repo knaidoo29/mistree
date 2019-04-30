@@ -16,18 +16,20 @@ def partition_data(total_sample_size, num_groups):
     Returns
     -------
     groups : array
-        An array of the same size as the total sample, indicated which group
-        each element is assigned to.
+        An array of the same size as the total sample, indicating which group
+        each element is assigned to. Unassigned points are given a group of -1,
+        which occurs if the number of groups does not exactly divide the total_sample_size
     """
     individual_sample_size = total_sample_size/num_groups
     indices = np.arange(0, total_sample_size, 1)
-    mask = np.ones(len(indices))
     groups = np.zeros(len(indices))
-    for i in range(0, num_groups):
-        condition = np.where(mask == 1.)[0]
-        indexes = np.random.choice(indices[condition], individual_sample_size, replace=False)
-        mask[indexes] = 0.
-        groups[indexes] = float(i)
+    for i in range(1, num_groups):
+        groups[individual_sample_size*i:individual_sample_size*(i+1)] = i
+    if total_sample_size % num_groups != 0:
+        groups[individual_sample_size*num_groups:] = -1
+    randoms = np.random.random_sample(len(groups))
+    ordered_randoms_and_reordered_groups = np.array(sorted(zip(randoms, groups)))
+    groups = ordered_randoms_and_reordered_groups[:, 1]
     return groups
 
 
