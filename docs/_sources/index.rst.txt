@@ -1,12 +1,4 @@
 
-.. figure:: img/illustris_vs_levy_plot.png
-    :align: center
-
-    From paper **ref**. This figure demonstrates how the measured minimum spanning tree
-    statistics (measured using MiSTree shown in the bottom 4 panels -- from left to right: degree, edge length, branch length and branch shape)
-    are able to distinguish two visually distinct simulations (top left and middle panels).
-    A task the commonly used two point correlation function (top right) is unable to do.
-
 Introduction
 ------------
 
@@ -19,7 +11,7 @@ Installation
 ------------
 
 To use MiSTree you must first download the package from `github
-<https://github.com/knaidoo29/MiSTree/tree/source_code>`_. The package itself requires the
+<https://github.com/knaidoo29/MiSTree>`_. The package itself requires the
 following python libraries:
 
 * `numpy <http://www.numpy.org/>`_
