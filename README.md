@@ -13,11 +13,11 @@ This will compile a set of fortran files. Assuming they have compiled correctly
 (it will tell you) you can then add the directory to your python paths. You should
 now be able to import the module:
 
-`import MiSTree as mist`
+`import mistree as mist`
 
 ## Further details
 
-In depth documentation and tutorials are provided [here](https://knaidoo29.github.io/MiSTree/).
+In depth documentation and tutorials are provided [here](https://knaidoo29.github.io/mistree/).
 
 ## Contact
 

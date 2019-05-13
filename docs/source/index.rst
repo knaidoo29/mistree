@@ -2,16 +2,15 @@
 Introduction
 ------------
 
-MiSTree is designed with the intent of being an easy to use skeletal algorithm
-library, primarily focused (for the moment) on running the minimum spanning tree
-(MST) and subsequent analysis. Although MiSTree is free to use, if you do use MiSTree
-in a publication, please cite the paper **ref**.
+MiSTree is designed with the intent of being an easy to use minimum spanning tree
+library. MiSTree is free to use, if you do use MiSTree in a publication,
+please cite the paper **ref**.
 
 Installation
 ------------
 
 To use MiSTree you must first download the package from `github
-<https://github.com/knaidoo29/MiSTree>`_. The package itself requires the
+<https://github.com/knaidoo29/mistree>`_. The package itself requires the
 following python libraries:
 
 * `numpy <http://www.numpy.org/>`_
@@ -36,7 +35,7 @@ to your python path. Once this is done you should be able to call MiSTree from p
 
 .. code-block:: python
 
-   import MiSTree as mist
+   import mistree as mist
 
 Note: MiSTree was tested and built using python 2.7, compatibility with python 3 is something we are
 aiming for in the near future.
