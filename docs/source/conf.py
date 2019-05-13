@@ -92,7 +92,7 @@ html_theme_options = {
     'logo_only': True
 }
 
-html_logo = 'img/mistree_logo.png'
+html_logo = 'img/mistree_logo_extra.png'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
