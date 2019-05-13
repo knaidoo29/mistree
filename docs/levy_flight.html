@@ -185,7 +185,7 @@ explore what the other parameters do later.</p>
 <h4>2D<a class="headerlink" href="#d" title="Permalink to this headline">¶</a></h4>
 <p>In this example we show how to generate a random walk distribution in 2D. Since
 the default setting is in 3D we will need to specify that we want this in 2D.</p>
-<p>Before this we need to first import some basic modules for plotting and LyTree itself.</p>
+<p>Before this we need to first import some basic modules for plotting and MiSTree itself.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">mistree</span> <span class="kn">as</span> <span class="nn">mist</span>
@@ -254,7 +254,7 @@ the distribution in the following way:</p>
 </div>
 <div class="section" id="periodic-boundary">
 <h3>Periodic boundary<a class="headerlink" href="#periodic-boundary" title="Permalink to this headline">¶</a></h3>
-<p>All random walk distributions created by LyTree have periodic boundary conditions
+<p>All random walk distributions created by MiSTree have periodic boundary conditions
 by default. This means that the box is repeated infinitely in all dimensions. This
 is a common procedure used in N-Body simulations. When a particle steps out of the
 boundary it actually re-enters the box from the other side. The size of the box can

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# lytree documentation build configuration file, created by
+# MiSTree documentation build configuration file, created by
 # sphinx-quickstart on Sat Jun 23 02:15:59 2018.
 #
 # This file is execfile()d with the current directory set to its
