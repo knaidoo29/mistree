@@ -10,8 +10,9 @@ To use MiSTree you must first download or clone this repository and then run:
 `python setup.py`
 
 This will compile a set of fortran files. Assuming they have compiled correctly
-(it will tell you) you can then add the directory to your python paths. If you're
-using a mac you would add this to your .bash_profile file:
+(it will tell you) you can then add the directory to your python paths. For example,
+if you're using a mac you would add this to your .bash_profile (located in your home
+folder) file:
 
 `export PYTHONPATH=$PYTHONPATH:<path/to/mistree>`
 
