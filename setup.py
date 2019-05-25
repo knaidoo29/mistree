@@ -3,6 +3,8 @@
 import subprocess
 import os
 
+os.chdir('mistree/')
+
 lf_path = 'levy_flight/'
 mst_path = 'mst/'
 
@@ -22,16 +24,16 @@ for i in range(0, len(fortran_files)):
     subprocess.call('rm -R ' + fortran_files[i] + '.so.dSYM', shell=True)
     os.chdir('..')
 
-print ''
-print 'Summary'
-print '-------\n'
-print 'Check whether the fortran files have compiled.\n'
+print('')
+print('Summary')
+print('-------\n')
+print('Check whether the fortran files have compiled.\n')
 
 for i in range(0, len(fortran_files)):
     os.chdir(file_path[i])
     check = os.path.exists(fortran_files[i] + '.so')
     if check is True:
-        print fortran_files[i] + ' ... Yes'
+        print(fortran_files[i] + ' ... Yes')
     else:
-        print fortran_files[i] + ' ... No'
+        print(fortran_files[i] + ' ... No')
     os.chdir('..')
