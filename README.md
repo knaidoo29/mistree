@@ -8,14 +8,14 @@ analysing minimum spanning trees.
 MiSTree was tested and built using Python 2.7, so we cannot guarantee that it will
 work for Python 3.
 
-In terms of python modules you will need:
+You will need the following python modules:
 
-* `numpy <http://www.numpy.org/>`_
-* `scipy <https://scipy.org/>`_
-* `scikit-learn <http://scikit-learn.org/stable/>`_
-* `f2py <https://docs.scipy.org/doc/numpy/f2py/>`_ (should be installed with numpy)
+* `numpy`
+* `scipy`
+* `scikit-learn`
+* `f2py` (should be installed with numpy)
 
-If `f2py` cannot find a `gcc <https://gcc.gnu.org/>`_ compiler then the fortran
+If `f2py` cannot find a `gcc` compiler then the fortran
 modules will not compile. If you have this issue and are using an anaconda distribution
 of python then you should be able to install `gcc` directly using the commands:
 
@@ -30,8 +30,7 @@ To use MiSTree you must first download or clone this repository and then run:
 This will compile a set of fortran files. Assuming they have compiled correctly
 (it will tell you) you can then add the directory to your python paths.
 
-
-If you're using a mac you would add this to your .bash_profile file (a hidden file
+If you're using a mac you would add this to your `.bash_profile` file (a hidden file
 located in your home folder):
 
 `export PYTHONPATH=$PYTHONPATH:<path/to/mistree>`
