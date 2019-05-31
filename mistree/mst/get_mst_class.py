@@ -193,6 +193,7 @@ class GetMST:
                                                          box_size=None, phi=self.phi, theta=self.theta,
                                                          edge_phi=edge_phi, edge_theta=edge_theta, mode='spherical')
         self.branch_index = branch_index
+        self.branch_index = [np.ndarray.tolist(np.array(self.branch_index[i])) for i in range(0, len(self.branch_index))]
         if len(rejected_branch_index) is not 0:
             if self.do_print is True:
                 print(str(float(len(rejected_branch_index))) + ' branches were incompleted.')
