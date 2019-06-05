@@ -136,6 +136,9 @@ def get_branch_index(edge_index, edge_degree, branch_cutting_frequency=1000):
             count = count + 1
             item = item + 1
     branch_index_rejected = branch_index_rejected + np.ndarray.tolist(np.ndarray.flatten(np.array(index_branch_mid)))
+    branch_index = [np.ndarray.tolist(np.hstack(np.array(branch_index[i]))) for i in range(0, len(branch_index))]
+    if len(branch_index_rejected) != 0:
+        branch_index_rejected = np.ndarray.tolist(np.hstack(np.array(branch_index_rejected)))
     return branch_index, branch_index_rejected
 
 
