@@ -25,10 +25,7 @@ def spherical_2_cartesian(r, phi, theta, units='degrees'):
     phi = np.copy(phi)
     theta = np.copy(theta)
     if units == 'degrees':
-        # _rad -- the value of 1 degree in radians.
-        _rad = np.pi / 180.
-        phi *= _rad
-        theta *= _rad
+        phi, theta = np.deg2rad(phi), np.deg2rad(theta)
     elif units == 'radians':
         pass
     else:
@@ -52,23 +49,20 @@ def celestial_2_cartesian(r, ra, dec, units='degrees', output='both'):
         Latitude celestial coordinates.
     units : str
         Units of ra and dec given in either degrees or radians.
-    output : {'euclidean', 'both'}, optional
-        Determines whether to output only the euclidean or both euclidean and spherical coordinates.
+    output : {'cartesian', 'both'}, optional
+        Determines whether to output only the cartesian or both cartesian and spherical coordinates.
 
     Returns
     -------
     phi, theta : array
         'spherical': spherical polar coordinates.
     x, y, z : array
-        'euclidean': euclidean coordinates.
+        'cartesian': euclidean coordinates.
     """
     phi = np.copy(ra)
     theta = np.copy(dec)
     if units == 'degrees':
-        # _rad -- the value of 1 degree in radians.
-        _rad = np.pi / 180.
-        phi *= _rad
-        theta *= _rad
+        phi, theta = np.deg2rad(phi), np.deg2rad(theta)
     elif units == 'radians':
         pass
     else:
@@ -80,12 +74,12 @@ def celestial_2_cartesian(r, ra, dec, units='degrees', output='both'):
         x = r * np.cos(phi) * np.sin(theta)
         y = r * np.sin(phi) * np.sin(theta)
         z = r * np.cos(theta)
-        if output == 'euclidean':
+        if output == 'cartesian':
             return x, y, z
         elif output == 'both':
             return phi, theta, x, y, z
         else:
-            raise AssertionError("Unexpected value entered for 'output', should be either 'euclidean' or 'both'.",
+            raise AssertionError("Unexpected value entered for 'output', should be either 'cartesian' or 'both'.",
                                  output)
 
 
@@ -120,7 +114,7 @@ def celestial_2_unit_sphere(ra, dec, units='degrees', output='both'):
         Latitude celestial coordinates.
     units : {'degrees', 'radians'}, optional
         Units of ra and dec given in either 'degrees' or 'radians'.
-    output : {'euclidean', 'both'}, optional
+    output : {'cartesian', 'both'}, optional
         Determines whether to output only the euclidean or both euclidean and spherical coordinates.
 
     Returns
@@ -128,7 +122,7 @@ def celestial_2_unit_sphere(ra, dec, units='degrees', output='both'):
     phi, theta : array
         'spherical': spherical polar coordinates.
     x, y, z : array
-        'euclidean': euclidean coordinates.
+        'cartesian': cartesian coordinates.
     """
     return celestial_2_cartesian(np.ones(len(ra)), ra, dec, units=units, output=output)
 
