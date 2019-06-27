@@ -3,6 +3,42 @@
 import numpy as np
 
 
+def spherical_2_cartesian(r, phi, theta, units='degrees'):
+    """Converts spherical polar coordinates into cartesian coordinates.
+
+    Parameters
+    ----------
+    r : array
+        Radial distance.
+    phi : array
+        Longitudinal coordinates (radians = [0, 2*pi]).
+    theta : array
+        Latitude coordinates (radians = [0, pi]).
+    units : str
+        Units of phi and theta given in either degrees or radians.
+
+    Returns
+    -------
+    x, y, z : array
+        'euclidean': euclidean coordinates.
+    """
+    phi = np.copy(phi)
+    theta = np.copy(dec)
+    if units == 'degrees':
+        # _rad -- the value of 1 degree in radians.
+        _rad = np.pi / 180.
+        phi *= _rad
+        theta *= _rad
+    elif units == 'radians':
+        pass
+    else:
+        raise AssertionError("Unexpected value entered for 'units', only supports either degrees or radians", units)
+    x = r * np.cos(phi) * np.sin(theta)
+    y = r * np.sin(phi) * np.sin(theta)
+    z = r * np.cos(theta)
+    return x, y, z
+
+
 def celestial_2_cartesian(r, ra, dec, units='degrees', output='both'):
     """Converts spherical polar coordinates into cartesian coordinates.
 
@@ -51,6 +87,26 @@ def celestial_2_cartesian(r, ra, dec, units='degrees', output='both'):
         else:
             raise AssertionError("Unexpected value entered for 'output', should be either 'euclidean' or 'both'.",
                                  output)
+
+
+def spherical_2_unit_sphere(phi, theta, units='degrees'):
+    """Project coordinates on a sphere into cartesian coordinates on a unit sphere.
+
+    Parameters
+    ----------
+    phi : array
+        Longitudinal coordinates (radians = [0, 2*pi]).
+    theta : array
+        Latitude coordinates (radians = [0, pi]).
+    units : {'degrees', 'radians'}, optional
+        Units of phi and theta given in either 'degrees' or 'radians'.
+
+    Returns
+    -------
+    x, y, z : array
+        cartesian coordinates.
+    """
+    return spherical_2_cartesian(np.ones(len(phi)), phi, theta, units=units)
 
 
 def celestial_2_unit_sphere(ra, dec, units='degrees', output='both'):

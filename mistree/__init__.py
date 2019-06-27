@@ -1,6 +1,8 @@
 # coordinate utility functions
 
+from .coordinates.coordinate_utility import spherical_2_cartesian
 from .coordinates.coordinate_utility import celestial_2_cartesian
+from .coordinates.coordinate_utility import spherical_2_unit_sphere
 from .coordinates.coordinate_utility import celestial_2_unit_sphere
 from .coordinates.coordinate_utility import perpendicular_distance_2_angle
 

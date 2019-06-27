@@ -21,14 +21,17 @@ class GetMST:
     node positions of a given data set to initiate the class.
     """
 
-    def __init__(self, x=None, y=None, z=None, ra=None, dec=None, r=None, units='degrees', do_print=False):
+    def __init__(self, x=None, y=None, z=None, phi=None, theta=None,ra=None, dec=None,
+                 r=None, units='degrees', do_print=False):
         """
         Parameters
         ----------
         x, y, (z) : array
             Cartesian 2D (3D) coordinates.
-        ra, dec, (r) : array
+        phi, theta, (r) : array
             Tomographic (spherical) coordinates.
+        ra, dec, (r) : array
+            Celestial tomographic (spherical) coordinates.
         units : {'degree', 'radians'}, optional
             The units of the celestial coordinates ra and dec.
         do_print : bool, optional
@@ -40,12 +43,16 @@ class GetMST:
         of the MST can be set based on the input parameters. Supply:
             * x and y - for 2D cartesian coordinate. "_mode='2D'"
             * x, y and z - for 3D cartesian coordinates.  "_mode='3D'"
-            * ra and dec - for celestial coordinates. "_mode='tomographic'"
-            * ra, dec and r - for spherical polar coordinates. "_mode='spherical polar'"
+            * phi and theta - for tomographic coordinates. "_mode='tomographic'"
+            * phi, theta and r - for spherical polar coordinates. "_mode='spherical polar'"
+            * ra and dec - for celestial coordinates. "_mode='tomographic celestial'"
+            * ra, dec and r - for celestial spherical polar coordinates. "_mode='spherical polar celestial'"
         """
         self.x = x
         self.y = y
         self.z = z
+        self.phi = phi
+        self.theta = theta
         self.ra = ra
         self.dec = dec
         self.r = r
@@ -56,11 +63,16 @@ class GetMST:
                 self._mode = '2D'
             else:
                 self._mode = '3D'
-        elif self.ra is not None and self.dec is not None:
+        elif self.phi is not None and self.theta is not None:
             if self.r is None:
                 self._mode = 'tomographic'
             else:
                 self._mode = 'spherical polar'
+        elif self.ra is not None and self.dec is not None:
+            if self.r is None:
+                self._mode = 'tomographic celestial'
+            else:
+                self._mode = 'spherical polar celestial'
         if do_print is True:
             print('MST mode: ', self._mode, ' coordinates')
         self.k_neighbours = 20
@@ -115,11 +127,19 @@ class GetMST:
                                             scale_cut_length=self.scale_cut_length)
         else:
             if self._mode == 'tomographic':
+                x, y, z = \
+                    coordinate_utility.spherical_2_unit_sphere(self.phi, self.theta, units=self.units)
+                self.x, self.y, self.z = x, y, z
+            elif self._mode == 'spherical polar':
+                x, y, z = \
+                    coordinate_utility.spherical_2_cartesian(self.r, self.phi, self.theta, units=self.units)
+                self.x, self.y, self.z = x, y, z
+            elif self._mode == 'tomographic celestial':
                 phi, theta, x, y, z = \
                     coordinate_utility.celestial_2_unit_sphere(self.ra, self.dec, units=self.units, output='both')
                 self.x, self.y, self.z = x, y, z
                 self.phi, self.theta = phi, theta
-            elif self._mode == 'spherical polar':
+            elif self._mode == 'spherical polar celestial':
                 phi, theta, x, y, z = \
                     coordinate_utility.celestial_2_cartesian(self.r, self.ra, self.dec, units=self.units, output='both')
                 self.x, self.y, self.z = x, y, z
@@ -399,10 +419,19 @@ class GetMST:
                 all_z = np.copy(self.z)
                 total_sample_size = len(all_x)
             elif self._mode == 'tomographic':
+                all_phi = np.copy(self.phi)
+                all_theta = np.copy(self.theta)
+                total_sample_size = len(all_phi)
+            elif self._mode == 'spherical polar':
+                all_phi = np.copy(self.phi)
+                all_theta = np.copy(self.theta)
+                all_r = np.copy(self.r)
+                total_sample_size = len(all_phi)
+            elif self._mode == 'tomographic celestial':
                 all_ra = np.copy(self.ra)
                 all_dec = np.copy(self.dec)
                 total_sample_size = len(all_ra)
-            elif self._mode == 'spherical polar':
+            elif self._mode == 'spherical polar celestial':
                 all_ra = np.copy(self.ra)
                 all_dec = np.copy(self.dec)
                 all_r = np.copy(self.r)
@@ -420,8 +449,12 @@ class GetMST:
                 elif self._mode == '3D':
                     self.__init__(x=all_x[group_indices], y=all_y[group_indices], z=all_z[group_indices])
                 elif self._mode == 'tomographic':
-                    self.__init__(ra=all_ra[group_indices], dec=all_dec[group_indices])
+                    self.__init__(phi=all_phi[group_indices], theta=all_theta[group_indices])
                 elif self._mode == 'spherical polar':
+                    self.__init__(phi=all_phi[group_indices], theta=all_theta[group_indices], r=all_r[group_indices])
+                elif self._mode == 'tomographic celestial':
+                    self.__init__(ra=all_ra[group_indices], dec=all_dec[group_indices])
+                elif self._mode == 'spherical polar celestial':
                     self.__init__(ra=all_ra[group_indices], dec=all_dec[group_indices], r=all_r[group_indices])
                 else:
                     pass
@@ -456,9 +489,16 @@ class GetMST:
                 self.y = all_y
                 self.z = all_z
             elif self._mode == 'tomographic':
+                self.phi = all_phi
+                self.theta = all_theta
+            elif self._mode == 'spherical polar':
+                self.phi = all_phi
+                self.theta = all_theta
+                self.r = all_r
+            elif self._mode == 'tomographic celestial':
                 self.ra = all_ra
                 self.dec = all_dec
-            elif self._mode == 'spherical polar':
+            elif self._mode == 'spherical polar celestial':
                 self.ra = all_ra
                 self.dec = all_dec
                 self.r = all_r
