@@ -23,7 +23,7 @@ def spherical_2_cartesian(r, phi, theta, units='degrees'):
         'euclidean': euclidean coordinates.
     """
     phi = np.copy(phi)
-    theta = np.copy(dec)
+    theta = np.copy(theta)
     if units == 'degrees':
         # _rad -- the value of 1 degree in radians.
         _rad = np.pi / 180.

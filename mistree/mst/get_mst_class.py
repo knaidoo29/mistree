@@ -21,7 +21,7 @@ class GetMST:
     node positions of a given data set to initiate the class.
     """
 
-    def __init__(self, x=None, y=None, z=None, phi=None, theta=None,ra=None, dec=None,
+    def __init__(self, x=None, y=None, z=None, phi=None, theta=None, ra=None, dec=None,
                  r=None, units='degrees', do_print=False):
         """
         Parameters
@@ -76,8 +76,6 @@ class GetMST:
         if do_print is True:
             print('MST mode: ', self._mode, ' coordinates')
         self.k_neighbours = 20
-        self.phi = None
-        self.theta = None
         self.edge_length = None
         self.edge_x = None
         self.edge_y = None
