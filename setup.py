@@ -34,7 +34,7 @@ print('Check whether the fortran files have compiled.\n')
 if int(sys.version[0]) == 2:
     print('Python version = 2\n')
     ext = '.so'
-elif int(sys.version[0] == 3):
+elif int(sys.version[0]) == 3:
     print('Python version = 3\n')
     ext = sysconfig.get_config_var('EXT_SUFFIX')
 
