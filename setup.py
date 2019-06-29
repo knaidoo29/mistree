@@ -20,7 +20,7 @@ for i in range(0, len(fortran_files)):
 
 for i in range(0, len(fortran_files)):
     os.chdir(file_path[i])
-    subprocess.call('f2py -c ' + fortran_files[i] + '.f90 -m ' + fortran_files[i] + '.so ', shell=True)
+    subprocess.call('f2py -c ' + fortran_files[i] + '.f90 -m ' + fortran_files[i], shell=True)
     subprocess.call('rm -R ' + fortran_files[i] + '.so.dSYM', shell=True)
     os.chdir('..')
 
@@ -37,7 +37,3 @@ for i in range(0, len(fortran_files)):
     else:
         print(fortran_files[i] + ' ... No')
     os.chdir('..')
-
-from distutils import sysconfig
-
-print(sysconfig.get_config_var('EXT_SUFFIX')) 
