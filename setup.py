@@ -2,6 +2,8 @@
 
 import subprocess
 import os
+import sys
+from distutils import sysconfig
 
 os.chdir('mistree/')
 
@@ -29,9 +31,16 @@ print('Summary')
 print('-------\n')
 print('Check whether the fortran files have compiled.\n')
 
+if int(sys.version[0]) == 2:
+    print('Python version = 2\n')
+    ext = '.so'
+elif int(sys.version[0] == 3):
+    print('Python version = 3\n')
+    ext = sysconfig.get_config_var('EXT_SUFFIX')
+
 for i in range(0, len(fortran_files)):
     os.chdir(file_path[i])
-    check = os.path.exists(fortran_files[i] + '.so')
+    check = os.path.exists(fortran_files[i] + ext)
     if check is True:
         print(fortran_files[i] + ' ... Yes')
     else:
