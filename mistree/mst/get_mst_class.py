@@ -8,12 +8,12 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(dir_path[:-3] + '/coordinates/')
 
 import numpy as np
-import construct
-import stats
-import branches
-import density as dens
 import coordinate_utility
-import partition
+from . import construct
+from . import stats
+from . import branches
+from . import density as dens
+from . import partition
 
 
 class GetMST:

@@ -5,8 +5,8 @@ import numpy as np
 from scipy.sparse.csgraph import minimum_spanning_tree
 from sklearn.neighbors import kneighbors_graph
 
-import scale_cut
-import tomo
+from . import scale_cut
+from . import tomo
 
 
 def construct_mst(x, y, z=None, k_neighbours=20, two_dimensions=False, scale_cut_length=0., is_tomo=False):

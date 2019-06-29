@@ -7,7 +7,7 @@ import sys
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(dir_path[:-3] + '/coordinates/')
 
-import scale_cut
+from . import scale_cut
 import coordinate_utility
 
 

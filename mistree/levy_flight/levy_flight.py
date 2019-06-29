@@ -2,7 +2,7 @@
 # flight-like distributions.
 
 import numpy as np
-import utility_random_walk as random_walk
+from . import utility_random_walk as random_walk
 
 
 def _get_randoms_sphere(size):

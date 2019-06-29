@@ -1,7 +1,7 @@
 # The functions described here are being tested and should not be used for now.
 
 import numpy as np
-import stats
+from . import stats
 
 
 def find_edge4point(index, edge_index):

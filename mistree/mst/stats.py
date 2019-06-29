@@ -2,7 +2,7 @@
 # quantities at present) of an input graph.
 
 import numpy as np
-import utility_mst
+from . import utility_mst
 
 
 def get_graph_degree(edge_index, number_of_nodes):

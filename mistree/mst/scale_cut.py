@@ -4,7 +4,7 @@
 import numpy as np
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import kneighbors_graph
-import graph as gr
+from . import graph as gr
 
 
 def graph_scale_cut(graph, scale_cut_length, num_nodes):

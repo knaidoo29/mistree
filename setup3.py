@@ -19,8 +19,6 @@ for i in range(0, len(fortran_files)):
         subprocess.call('rm ' + fortran_files[i] + '.so', shell=True)
     os.chdir('..')
 
-ext = sysconfig.get_config_var('EXT_SUFFIX')
-
 for i in range(0, len(fortran_files)):
     os.chdir(file_path[i])
     subprocess.call('f2py -c ' + fortran_files[i] + '.f90 -m ' + fortran_files[i], shell=True)
@@ -33,9 +31,11 @@ print('Summary')
 print('-------\n')
 print('Check whether the fortran files have compiled.\n')
 
+ext = sysconfig.get_config_var('EXT_SUFFIX')
+
 for i in range(0, len(fortran_files)):
     os.chdir(file_path[i])
-    check = os.path.exists(fortran_files[i] + '.so')
+    check = os.path.exists(fortran_files[i] + ext)
     if check is True:
         print(fortran_files[i] + ' ... Yes')
     else:

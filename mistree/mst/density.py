@@ -1,7 +1,7 @@
 # 'density.py' compares the density of particles in cells to another variable.
 
 import numpy as np
-import utility_density
+from . import utility_density
 
 
 def variable_vs_density(x, y, dx, x_param, y_param, param, box_size, z=None, z_param=None, mode='2D',
