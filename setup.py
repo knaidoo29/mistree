@@ -37,3 +37,7 @@ for i in range(0, len(fortran_files)):
     else:
         print(fortran_files[i] + ' ... No')
     os.chdir('..')
+
+from distutils import sysconfig
+
+print(sysconfig.get_config_var('EXT_SUFFIX')) 
