@@ -24,7 +24,7 @@ ext = sysconfig.get_config_var('EXT_SUFFIX')
 for i in range(0, len(fortran_files)):
     os.chdir(file_path[i])
     subprocess.call('f2py -c ' + fortran_files[i] + '.f90 -m ' + fortran_files[i], shell=True)
-    subprocess.call('mv ' + fortran_files[i] + ext + ' ' + fortran_files[i] + '.so')
+    subprocess.call('mv ' + fortran_files[i] + ext + ' ' + fortran_files[i] + '.so', shell=True)
     subprocess.call('rm -R ' + fortran_files[i] + '.so.dSYM', shell=True)
     os.chdir('..')
 
