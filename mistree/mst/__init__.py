@@ -38,9 +38,3 @@ from .stats import get_degree_for_edges
 # tomographic functions
 
 from .tomo import convert_tomo_knn_length2angle
-
-# trim function
-
-from .trim import find_edge4point
-from .trim import remove_tree_tips
-from .trim import trim_tree
