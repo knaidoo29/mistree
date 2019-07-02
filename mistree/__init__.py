@@ -52,9 +52,3 @@ from .mst.stats import get_degree_for_edges
 # mst - tomographic functions
 
 from .mst.tomo import convert_tomo_knn_length2angle
-
-# mst - trim function
-
-from .mst.trim import find_edge4point
-from .mst.trim import remove_tree_tips
-from .mst.trim import trim_tree
