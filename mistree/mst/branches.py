@@ -183,22 +183,25 @@ def get_branch_index_sub_divide(sub_divisions, edge_index, edge_degree, box_size
         of the full tree is provided.
     """
     if mode == 'Euclidean':
-        if box_size is None:
-            x_max_1 = np.max(edge_x[0])
-            x_max_2 = np.max(edge_x[1])
-            if x_max_1 >= x_max_2:
-                box_size = x_max_1
-            else:
-                box_size = x_max_2
-        dx = box_size / float(sub_divisions)
-        xx = np.arange(dx / 2., box_size + dx / 2., dx)
-        xx = xx[:sub_divisions]
+        x_min, x_max, y_min, y_max = np.min(edge_x), np.max(edge_x), np.min(edge_y), np.max(edge_y)
+        dx, dy = (x_max - x_min) / float(sub_divisions), (y_max - y_min) / float(sub_divisions)
+        xx = np.arange(x_min, x_max + dx, dx)
+        yy = np.arange(y_min, y_max + dy, dy)
+        xx_mid = 0.5 * (xx[1:len(xx)] + xx[0:len(xx) - 1])
+        yy_mid = 0.5 * (yy[1:len(yy)] + yy[0:len(yy) - 1])
         if two_dimension is True:
-            x_div, y_div = np.meshgrid(xx, xx, indexing='ij')
-            x_div, y_div = np.ndarray.flatten(x_div), np.ndarray.flatten(y_div)
+            x_div, y_div = np.meshgrid(xx_mid, yy_mid, indexing='ij')
+            x_div = np.ndarray.flatten(x_div)
+            y_div = np.ndarray.flatten(y_div)
         else:
-            x_div, y_div, z_div = np.meshgrid(xx, xx, xx, indexing='ij')
-            x_div, y_div, z_div = np.ndarray.flatten(x_div), np.ndarray.flatten(y_div), np.ndarray.flatten(z_div)
+            z_min, z_max = np.min(edge_z), np.max(edge_z)
+            dz = (z_max - z_min) / float(sub_divisions)
+            zz = np.arange(z_min, z_max + dz, dz)
+            zz_mid = 0.5 * (zz[1:len(zz)] + zz[0:len(zz) - 1])
+            x_div, y_div, z_div = np.meshgrid(xx_mid, yy_mid, zz_mid, indexing='ij')
+            x_div = np.ndarray.flatten(x_div)
+            y_div = np.ndarray.flatten(y_div)
+            z_div = np.ndarray.flatten(z_div)
     else:
         phi_min, phi_max, theta_min, theta_max = np.min(phi), np.max(phi), np.min(theta), np.max(theta)
         dphi, dtheta = (phi_max - phi_min) / float(sub_divisions), (theta_max - theta_min) / float(sub_divisions)
