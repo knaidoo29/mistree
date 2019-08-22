@@ -1,5 +1,7 @@
 # MiSTree
 
+[![DOI](https://zenodo.org/badge/170473458.svg)](https://zenodo.org/badge/latestdoi/170473458)
+
 This is the public repository for MiSTree, a python package for constructing and
 analysing minimum spanning trees.
 
