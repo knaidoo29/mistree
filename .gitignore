@@ -22,3 +22,15 @@ mistree/mst/utility_random_walk/*
 mistree/mst/__pycache__/*
 mistree/mst/utility_density/*
 mistree/mst/utility_mst/*
+
+# remove paper JOSS for now
+paper/Makefile
+paper/*.png
+paper/*.template
+paper/*.aux
+paper/*.bcf
+paper/*.log
+paper/*.out
+paper/*.pdf
+paper/*.run.xml
+paper/*.tex
