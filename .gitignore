@@ -34,3 +34,4 @@ paper/*.out
 paper/*.pdf
 paper/*.run.xml
 paper/*.tex
+paper/*.py
