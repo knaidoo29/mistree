@@ -45,11 +45,11 @@ def readme(short=False):
         else:
             return f.read()
 
-ext1 = Extension(name = 'mistree.levy_flight.utility_random_walk',
+ext1 = Extension(name = 'python.levy_flight.utility_random_walk',
                  sources = ['mistree/levy_flight/utility_random_walk.f90'])
-ext2 = Extension(name = 'mistree.mst.utility_density',
+ext2 = Extension(name = 'python.mst.utility_density',
                  sources = ['mistree/mst/utility_density.f90'])
-ext3 = Extension(name = 'mistree.mst.utility_mst',
+ext3 = Extension(name = 'python.mst.utility_mst',
                  sources = ['mistree/mst/utility_mst.f90'])
 
 if __name__ == "__main__":
@@ -62,7 +62,7 @@ if __name__ == "__main__":
           author            = "Krishna Naidoo",
           author_email      = "krishna.naidoo.11@ucl.ac.uk",
           license='MIT',
-          packages=['mistree'],
+          packages=['mistree':'python'],
           package_dir = {'mistree'},
           install_requires=['numpy', 'matplotlib', 'scipy', 'scikit-learn'],
           ext_modules = [ext1, ext2, ext3]
