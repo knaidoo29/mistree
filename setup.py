@@ -45,11 +45,11 @@ def readme(short=False):
         else:
             return f.read()
 
-ext1 = Extension(name = 'utility_random_walk',
+ext1 = Extension(name = 'mistree/levy_flight/utility_random_walk',
                  sources = ['mistree/levy_flight/utility_random_walk.f90'])
-ext2 = Extension(name = 'utility_density',
+ext2 = Extension(name = 'mistree/mst/utility_density',
                  sources = ['mistree/mst/utility_density.f90'])
-ext3 = Extension(name = 'utility_mst',
+ext3 = Extension(name = 'mistree/mst/utility_mst',
                  sources = ['mistree/mst/utility_mst.f90'])
 
 if __name__ == "__main__":
