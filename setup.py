@@ -62,8 +62,8 @@ if __name__ == "__main__":
           author            = "Krishna Naidoo",
           author_email      = "krishna.naidoo.11@ucl.ac.uk",
           license='MIT',
-          packages=['mistree':'python'],
-          package_dir = {'mistree'},
+          packages=['mistree'],
+          package_dir = {'mistree':'python'},
           install_requires=['numpy', 'matplotlib', 'scipy', 'scikit-learn'],
           ext_modules = [ext1, ext2, ext3]
           )
