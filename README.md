@@ -18,27 +18,16 @@ You will need the following python modules:
 * `scikit-learn`
 * `f2py` (should be installed with numpy)
 
-If `f2py` cannot find a `gcc` compiler then the fortran modules will not compile.
-If you have this issue and are using an anaconda distribution of python then you
-should be able to install `gcc` directly using the commands:
+## Installation
 
-`conda install -c anaconda gcc`
+MiSTree can be installed as follows:
 
-## Basic setup
+`pip install mistree [--user]`
 
-To use MiSTree you must first download or clone this repository and then run:
+The `--user` is optional and only required if you don’t have write permission. If you
+want to work on the Github version you can clone the repository and install it in place:
 
-`python setup.py`
-
-This will compile a set of fortran files. Assuming they have compiled correctly
-(it will tell you) you can then add the directory to your python paths.
-
-If you're using a mac, you would need to add this to your `.bash_profile` file
-(a hidden file located in your home folder):
-
-`export PYTHONPATH=$PYTHONPATH:<path/to/mistree>`
-
-Then run `source .bash_profile`.
+`pip install -e /path/to/mistree [--user]`
 
 You should now be able to import the module:
 
