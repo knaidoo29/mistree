@@ -1,5 +1,73 @@
 """setup.py compiles the fortran files so they can be called from python."""
+"""
+#from distutils.core import setup
+from setuptools import setup, find_packages
 
+setup(
+    name='MiSTree',
+    version='1.1',
+    author='Krishna Naidoo',
+    author_email='krishna.naidoo.11@ucl.ac.uk',
+    packages=['mistree'],
+    url='https://knaidoo29.github.io/mistreedoc/',
+    license='LICENSE.txt',
+    description='A python package for constructing and analysing the minimum spanning tree.',
+    long_description=open('README.md').read(),
+    packages=find_packages(),
+    #install_requires=[
+    #    "Django >= 1.1.1",
+    #    "caldav == 0.1.4",
+    #],
+)
+
+from setuptools import setup
+
+setup(name='MiSTree',
+      version='1.1',
+      description='A python package for constructing and analysing the minimum spanning tree',
+      url='https://knaidoo29.github.io/mistreedoc/',
+      author='Krishna Naidoo',
+      author_email='krishna.naidoo.11@ucl.ac.uk',
+      license='MIT',
+      packages=['mistree'],
+      zip_safe=False)
+"""
+
+
+#from setuptools import setup, find_packages
+from numpy.distutils.core import Extension
+
+
+def readme(short=False):
+    with open('README.md') as f:
+        if short:
+            return f.readlines()[1].strip()
+        else:
+            return f.read()
+
+ext1 = Extension(name = 'utility_random_walk',
+                 sources = ['mistree/levy_flight/utility_random_walk.f90'])
+ext2 = Extension(name = 'utility_density',
+                 sources = ['mistree/mst/utility_density.f90'])
+ext3 = Extension(name = 'utility_mst',
+                 sources = ['mistree/mst/utility_mst.f90'])
+
+if __name__ == "__main__":
+    from numpy.distutils.core import setup
+    setup(name = 'MiSTree',
+          version = '1.1',
+          description       = "A python package for constructing and analysing the minimum spanning tree",
+          long_description  = readme(),
+          url               = 'https://knaidoo29.github.io/mistreedoc/',
+          author            = "Krishna Naidoo",
+          author_email      = "krishna.naidoo.11@ucl.ac.uk",
+          license='MIT',
+          packages=['mistree'],
+          install_requires=['numpy', 'matplotlib', 'scipy', 'scikit-learn'],
+          ext_modules = [ext1, ext2, ext3]
+          )
+
+"""
 import subprocess
 import os
 import sys
@@ -46,3 +114,4 @@ for i in range(0, len(fortran_files)):
     else:
         print(fortran_files[i] + ' ... No')
     os.chdir('..')
+"""

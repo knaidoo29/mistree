@@ -23,6 +23,8 @@ mistree/mst/__pycache__/*
 mistree/mst/utility_density/*
 mistree/mst/utility_mst/*
 
+
+
 # remove paper JOSS for now
 paper/Makefile
 paper/*.png
