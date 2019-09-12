@@ -1,3 +1,5 @@
+name = "mistree"
+
 # coordinate utility functions
 from .coordinates.coordinate_utility import spherical_2_cartesian
 from .coordinates.coordinate_utility import celestial_2_cartesian

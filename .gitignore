@@ -25,6 +25,9 @@ mistree/mst/utility_mst/*
 
 # remove build
 build/*
+dist/*
+mistree.egg-info/*
+
 
 # remove paper JOSS for now
 paper/Makefile
