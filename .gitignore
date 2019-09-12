@@ -35,3 +35,5 @@ paper/*.pdf
 paper/*.run.xml
 paper/*.tex
 paper/*.py
+paper/*.blg
+paper/*.bbl

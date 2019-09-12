@@ -13,6 +13,7 @@ Python 3.5 and 3.7.
 You will need the following python modules:
 
 * `numpy`
+* `matplotlib`
 * `scipy`
 * `scikit-learn`
 * `f2py` (should be installed with numpy)
