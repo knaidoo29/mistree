@@ -38,7 +38,7 @@ pip install -e . [--user]
 You should now be able to import the module:
 
 ```python
-import mistree as mist`
+import mistree as mist
 ```
 
 ## Further details
