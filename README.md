@@ -7,11 +7,6 @@ analysing minimum spanning trees.
 
 ## Dependencies
 
-MiSTree was tested and built using Python 2.7 and has been subsequently tested on
-Python 3.5 and 3.7.
-
-You will need the following python modules:
-
 * Python 2.7 or 3.5+
 * `numpy`
 * `matplotlib`
