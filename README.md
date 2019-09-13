@@ -25,13 +25,13 @@ MiSTree can be installed as follows:
 `pip install mistree [--user]`
 
 The `--user` is optional and only required if you don’t have write permission. If you
-want to work on the Github version you can clone the repository and install an editable version:
+want to work on the Github version you can clone the repository and install an editable version::
 
-`git clone https://github.com/knaidoo29/mistree.git`
-
-`cd mistree`
-
-`pip install -e . [--user]`
+```
+git clone https://github.com/knaidoo29/mistree.git
+cd mistree
+pip install -e . [--user]
+```
 
 You should now be able to import the module:
 
