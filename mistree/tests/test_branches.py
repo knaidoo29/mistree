@@ -11,6 +11,14 @@ def test_get_branch_index():
     mst.get_degree_for_edges()
     branch_index, branch_index_rejected = mist.get_branch_index(mst.edge_index, mst.edge_degree)
     assert len(branch_index_rejected) == 0
+    x = np.random.random_sample(500)
+    y = np.random.random_sample(500)
+    mst = mist.GetMST(x=x, y=y)
+    mst.construct_mst()
+    mst.get_degree()
+    mst.get_degree_for_edges()
+    branch_index, branch_index_rejected = mist.get_branch_index(mst.edge_index, mst.edge_degree, branch_cutting_frequency=10)
+    assert len(branch_index_rejected) == 0
 
 
 def test_get_branch_index_sub_divide_2d():
@@ -32,6 +40,16 @@ def test_get_branch_index_sub_divide_2d():
             else:
                 pass
     assert count == len(branch_index)
+    x = np.random.random_sample(500)
+    y = np.random.random_sample(500)
+    mst = mist.GetMST(x=x, y=y)
+    mst.construct_mst()
+    mst.get_degree()
+    mst.get_degree_for_edges()
+    branch_index_sub, branch_index_sub_rej = mist.get_branch_index_sub_divide(2, mst.edge_index, mst.edge_degree,
+                                                                              box_size=1., edge_x=mst.edge_x, edge_y=mst.edge_y,
+                                                                              branch_cutting_frequency=10)
+
 
 
 def test_get_branch_index_sub_divide_3d():

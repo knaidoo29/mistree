@@ -40,6 +40,8 @@ def test_celestial_2_cartesian():
     assert len(p) == 5
     p = mist.celestial_2_cartesian(1., 0., 0., output='cartesian')
     assert len(p) == 3
+    p = mist.celestial_2_cartesian(1., 0., 0., output='spherical')
+    assert len(p) == 2
     phi, theta, x, y, z = mist.celestial_2_cartesian(1., 0., 90.)
     assert phi == 0.
     assert theta == 0.

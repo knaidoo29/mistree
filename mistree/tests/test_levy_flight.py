@@ -39,6 +39,11 @@ def test_get_levy_flight():
                          (z >= 0.) & (z <= box_size))[0]
     assert len(condition) == len(x)
     box_size = 0.1
+    x, y = mist.get_levy_flight(10, mode='2D', box_size=box_size, periodic=False)
+    condition = np.where((x >= 0.) & (x <= box_size) &
+                         (y >= 0.) & (y <= box_size))[0]
+    assert len(condition) != len(x)
+    box_size = 0.1
     x, y, z = mist.get_levy_flight(10, box_size=box_size, periodic=False)
     condition = np.where((x >= 0.) & (x <= box_size) &
                          (y >= 0.) & (y <= box_size) &
@@ -67,3 +72,4 @@ def test_get_adjusted_levy_flight():
                          (y >= 0.) & (y <= box_size) &
                          (z >= 0.) & (z <= box_size))[0]
     assert len(condition) != len(x)
+    x, y, z = mist.get_adjusted_levy_flight(10, box_size=box_size, gamma=None)

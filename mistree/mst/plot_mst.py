@@ -266,7 +266,7 @@ class PlotHistMST:
     def plot(self, usebox=True, saveas=None, fontsize=16, figsize=(16, 4), units=None,
              showenvelopes=True, usecomp=False, usemean=True, height_ratios=[2, 1],
              usefraction=False, whichcomp=0, plotzeroline=True, legend=True, subplot_adjust_top=0.85,
-             legend_fontsize=14, legend_column=4, xlabels=[None, None, None, None]):
+             legend_fontsize=14, legend_column=4, xlabels=[None, None, None, None], plt_output='show'):
         """Outputs the final plot of the MST statistics.
 
         Parameters
@@ -615,7 +615,12 @@ class PlotHistMST:
             pass
         else:
             plt.savefig(saveas)
-        plt.show()
+        if plt_output == 'show':
+            plt.show()
+        elif plt_output == 'close':
+            plt.close()
+        else:
+            pass
 
     def clean(self):
         """Resets PlotHistMST variables.

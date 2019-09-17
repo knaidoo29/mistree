@@ -55,6 +55,26 @@ def test_GetMST_construct_mst_2d():
     assert mst.edge_index is not None
 
 
+def test_GetMST_construct_mst_2d_scale_cut():
+    x = np.random.random_sample(100)
+    y = np.random.random_sample(100)
+    mst = mist.GetMST(x=x, y=y)
+    mst.scale_cut(0.2)
+    mst.construct_mst()
+    assert mst.x is not None
+    assert mst.y is not None
+    assert mst.z is None
+    assert mst.phi is None
+    assert mst.theta is None
+    assert mst.edge_length is not None
+    assert mst.edge_x is not None
+    assert mst.edge_y is not None
+    assert mst.edge_z is None
+    assert mst.edge_phi is None
+    assert mst.edge_theta is None
+    assert mst.edge_index is not None
+
+
 def test_GetMST_construct_mst_3d():
     x = np.random.random_sample(100)
     y = np.random.random_sample(100)
@@ -115,9 +135,9 @@ def test_GetMST_construct_mst_spherical():
 
 
 def test_GetMST_construct_mst_celestial_tomo():
-    phi = 360.*np.random.random_sample(100)
-    theta = 180.*np.random.random_sample(100) - 90.
-    mst = mist.GetMST(phi=phi, theta=theta)
+    ra = 360.*np.random.random_sample(100)
+    dec = 180.*np.random.random_sample(100) - 90.
+    mst = mist.GetMST(ra=ra, dec=dec)
     mst.construct_mst()
     assert mst.x is not None
     assert mst.y is not None
@@ -135,9 +155,9 @@ def test_GetMST_construct_mst_celestial_tomo():
 
 def test_GetMST_construct_mst_celestial_spherical():
     r = np.random.random_sample(100)
-    phi = 360.*np.random.random_sample(100) - 90.
-    theta = 180.*np.random.random_sample(100)
-    mst = mist.GetMST(phi=phi, theta=theta, r=r)
+    ra = 360.*np.random.random_sample(100) - 90.
+    dec = 180.*np.random.random_sample(100)
+    mst = mist.GetMST(ra=ra, dec=dec, r=r)
     mst.construct_mst()
     assert mst.x is not None
     assert mst.y is not None
@@ -249,6 +269,22 @@ def test_GetMST_get_branches_3d_box():
     assert len(condition) == len(b1)
 
 
+def test_GetMST_get_branches_3d_box():
+    x = np.random.random_sample(50)
+    y = np.random.random_sample(50)
+    z = np.random.random_sample(50)
+    mst = mist.GetMST(x=x, y=y, z=z)
+    mst.construct_mst()
+    mst.get_degree()
+    mst.get_degree_for_edges()
+    mst.get_branches(box_size=None, sub_divisions=1)
+    b1 = np.copy(mst.branch_length)
+    mst.get_branches(box_size=1, sub_divisions=1)
+    b2 = np.copy(mst.branch_length)
+    condition = np.where(np.sort(b1) == np.sort(b2))[0]
+    assert len(condition) == len(b1)
+
+
 def test_GetMST_branch_edge_count():
     mst = mist.GetMST()
     mst.branch_index = [[1, 2, 3], [1, 2], [3, 4, 5, 6, 6]]
@@ -313,3 +349,60 @@ def test_GetMST_output_stats_index():
     d, l, b, s = mst.get_stats()
     output = mst.output_stats(include_index=True)
     assert len(output) == 6
+
+
+def test_GetMST_get_stats_2D():
+    x = np.random.random_sample(100)
+    y = np.random.random_sample(100)
+    mst = mist.GetMST(x=x, y=y)
+    mst.get_stats(partitions=2)
+    mst.get_stats(partitions=2, include_index=True)
+    mst.clean()
+
+
+def test_GetMST_get_stats_3D():
+    x = np.random.random_sample(100)
+    y = np.random.random_sample(100)
+    z = np.random.random_sample(100)
+    mst = mist.GetMST(x=x, y=y, z=z)
+    mst.get_stats(partitions=2)
+    mst.get_stats(partitions=2, include_index=True)
+    mst.clean()
+
+
+def test_GetMST_get_stats_tomo():
+    phi = 360.*np.random.random_sample(100)
+    theta = 180.*np.random.random_sample(100)
+    mst = mist.GetMST(phi=phi, theta=theta)
+    mst.get_stats(partitions=2)
+    mst.get_stats(partitions=2, include_index=True)
+    mst.clean()
+
+
+def test_GetMST_get_stats_spherical():
+    r = np.random.random_sample(100)
+    phi = 360.*np.random.random_sample(100)
+    theta = 180.*np.random.random_sample(100)
+    mst = mist.GetMST(r=r, phi=phi, theta=theta)
+    mst.get_stats(partitions=2)
+    mst.get_stats(partitions=2, include_index=True)
+    mst.clean()
+
+
+def test_GetMST_get_stats_tomo_celestial():
+    ra = 360.*np.random.random_sample(100)
+    dec = 180.*np.random.random_sample(100) - 90.
+    mst = mist.GetMST(ra=ra, dec=dec)
+    mst.get_stats(partitions=2)
+    mst.get_stats(partitions=2, include_index=True)
+    mst.clean()
+
+
+def test_GetMST_get_stats_spherical_celestial():
+    r = np.random.random_sample(100)
+    ra = 360.*np.random.random_sample(100)
+    dec = 180.*np.random.random_sample(100) - 90.
+    mst = mist.GetMST(r=r, ra=ra, dec=dec)
+    mst.get_stats(partitions=2)
+    mst.get_stats(partitions=2, include_index=True)
+    mst.clean()
