@@ -19,5 +19,5 @@ before_script:
   - ls /home/travis/build/knaidoo29/mistree/mistree/mst
   - ls /home/travis/build/knaidoo29/mistree/mistree/coordinates
 
-script: nosetests
+script: python setup.py test
  
