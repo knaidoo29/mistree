@@ -24,7 +24,7 @@ def partition_data(total_sample_size, num_groups):
     indices = np.arange(0, total_sample_size, 1)
     groups = np.zeros(len(indices))
     for i in range(1, num_groups):
-        groups[individual_sample_size*i:individual_sample_size*(i+1)] = i
+        groups[int(individual_sample_size*i):int(individual_sample_size*(i+1))] = i
     if total_sample_size % num_groups != 0:
         groups[individual_sample_size*num_groups:] = -1
     randoms = np.random.random_sample(len(groups))
