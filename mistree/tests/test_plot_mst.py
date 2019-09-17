@@ -36,7 +36,7 @@ def test_PlotHistMST_plot_usebox():
     pmst.plot(usebox=False, plt_output='close')
 
 
-def test_PlotHistMST_plot_contour():
+def test_PlotHistMST_plot_contour_extra_option():
     hmst = mist.HistMST()
     hmst.setup()
     hmst.start_group()
@@ -53,6 +53,18 @@ def test_PlotHistMST_plot_contour():
     pmst = mist.PlotHistMST()
     pmst.read_mst(mst_dict)
     pmst.plot(usebox=False, plt_output='close')
+    pmst = mist.PlotHistMST()
+    pmst.read_mst(mst_dict)
+    pmst.plot(xlabels=['a', 'b', 'c', 'd'], plt_output='close')
+    pmst = mist.PlotHistMST()
+    pmst.read_mst(mst_dict)
+    pmst.plot(usefraction=True, plt_output='close')
+    pmst = mist.PlotHistMST()
+    pmst.read_mst(mst_dict)
+    pmst.plot(usefraction=True, usemean=False, plt_output='close')
+    pmst = mist.PlotHistMST()
+    pmst.read_mst(mst_dict)
+    pmst.plot(units='^{\circ}', plt_output='close')
 
 
 def test_PlotHistMST_plot_comparison():
@@ -73,6 +85,10 @@ def test_PlotHistMST_plot_comparison():
     pmst.read_mst(hist_lf, label='Levy Flight')
     pmst.read_mst(hist_alf, label='Adjusted Levy Flight')
     pmst.plot(usecomp=True, plt_output='close')
+    pmst = mist.PlotHistMST()
+    pmst.read_mst(hist_lf, label='Levy Flight')
+    pmst.read_mst(hist_alf, label='Adjusted Levy Flight')
+    pmst.plot(usebox=False, usecomp=True, plt_output='close')
 
 
 def test_PlotHistMST_plot_comparison_envelope():
