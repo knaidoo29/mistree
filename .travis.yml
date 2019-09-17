@@ -4,13 +4,9 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
-cache: pip
-
+ 
 install:
-  - pip install numpy matplotlib scipy scikit-learn nose
   - pip install -r requirements.txt
-  - pip install .
 
-script:
-  - nose
+script: nosetests
  
