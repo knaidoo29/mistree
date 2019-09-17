@@ -15,8 +15,9 @@ install:
   - pip install .
 
 before_script:
-  - ls
-  - cd mistree
+  - ls /home/travis/build/knaidoo29/mistree/mistree/levy_flight
+  - ls /home/travis/build/knaidoo29/mistree/mistree/mst
+  - ls /home/travis/build/knaidoo29/mistree/mistree/coordinates
 
 script: nosetests
  
