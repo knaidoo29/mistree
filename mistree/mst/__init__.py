@@ -19,7 +19,6 @@ from .graph import data2graph
 from .hist_mst import bin_data
 from .hist_mst import HistMST
 
-
 # Plotting MST class
 from .plot_mst import set_plot_default
 from .plot_mst import plot_histogram_line

@@ -47,4 +47,6 @@ setup(name = 'mistree',
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Scientific/Engineering :: Mathematics',
       ],
+      test_suite='nose.collector',
+      tests_require=['nose'],
       )

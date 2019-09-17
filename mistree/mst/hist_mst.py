@@ -33,6 +33,10 @@ def bin_data(data, minimum=None, maximum=None, bin_size=None, bin_number=100, no
         maximum = np.max(data)
     if bin_size is None:
         _bin_edge = np.linspace(minimum, maximum, bin_number+1)
+    if bin_size is not None:
+        _bin_edge = np.arange(minimum, maximum+bin_size, bin_size)
+        condition = np.where(_bin_edge <= maximum)[0]
+        _bin_edge = _bin_edge[condition]
     binned_data, _bin_edges = np.histogram(data, bins=_bin_edge, density=normalised)
     bin_centres = 0.5 * (_bin_edge[1:] + _bin_edge[:-1])
     return bin_centres, binned_data

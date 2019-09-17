@@ -2,6 +2,7 @@ mistree/*.pyc
 mistree/coordinates/*.pyc
 mistree/levy_flight/*.pyc
 mistree/mst/*.pyc
+mistree/tests/*.pyc
 
 mistree/levy_flight/*.so
 mistree/mst/*.so

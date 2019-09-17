@@ -223,17 +223,17 @@ def get_branch_index_sub_divide(sub_divisions, edge_index, edge_degree, box_size
     for k in range(0, length):
         if mode == 'Euclidean' and two_dimension is True:
             xd, yd = x_div[k], y_div[k]
-            condition = np.where((total_mask == 1.) & (edge_x[0] >= xd - dx / 2.) & (edge_x[0] < xd + dx / 2.) &
-                                 (edge_y[0] >= yd - dx / 2.) & (edge_y[0] < yd + dx / 2.))[0]
+            condition = np.where((total_mask == 1.) & ((edge_x[0] >= xd - dx / 2.) | (edge_x[0] <= xd + dx / 2.) |
+                                 (edge_y[0] >= yd - dx / 2.) | (edge_y[0] <= yd + dx / 2.)))[0]
         elif mode == 'Euclidean' and two_dimension is False:
             xd, yd, zd = x_div[k], y_div[k], z_div[k]
-            condition = np.where((total_mask == 1.) & (edge_x[0] >= xd - dx / 2.) & (edge_x[0] < xd + dx / 2.) &
-                                 (edge_y[0] >= yd - dx / 2.) & (edge_y[0] < yd + dx / 2.) & (edge_z[0] >= zd - dx / 2.)
-                                 & (edge_z[0] < zd + dx / 2.))[0]
+            condition = np.where((total_mask == 1.) & ((edge_x[0] >= xd - dx / 2.) | (edge_x[0] <= xd + dx / 2.) |
+                                 (edge_y[0] >= yd - dx / 2.) | (edge_y[0] < yd + dx / 2.) | (edge_z[0] >= zd - dx / 2.)
+                                 & (edge_z[0] <= zd + dx / 2.)))[0]
         else:
             pd, td = phi_div[k], theta_div[k]
-            condition = np.where((total_mask == 1.) & (edge_phi[0] >= pd - dphi / 2.) & (edge_phi[0] < pd + dphi / 2.)
-                                 & (edge_theta[0] >= td - dtheta / 2.) & (edge_theta[0] < td + dtheta / 2.))[0]
+            condition = np.where((total_mask == 1.) & ((edge_phi[0] >= pd - dphi / 2.) | (edge_phi[0] <= pd + dphi / 2.)
+                                 | (edge_theta[0] >= td - dtheta / 2.) | (edge_theta[0] <= td + dtheta / 2.)))[0]
         edge_degree_cut = np.array([edge_degree[0][condition], edge_degree[1][condition]])
         edge_index_cut = np.array([edge_index[0][condition], edge_index[1][condition]])
         branch_index_cut, branch_index_rejected_cut = \
@@ -326,6 +326,6 @@ def get_branch_shape(edge_index, edge_degree, branch_index, branch_length, mode=
         dy = abs(y[branch_index_end1] - y[branch_index_end2])
         dz = abs(z[branch_index_end1] - z[branch_index_end2])
         branch_end_length = np.sqrt((dx ** 2.) + (dy ** 2.) + (dz ** 2.))
-        coordinate_utility.perpendicular_distance_2_angle(branch_end_length)
+        branch_end_length = coordinate_utility.perpendicular_distance_2_angle(branch_end_length)
     branch_shape = branch_end_length/branch_length
     return branch_shape

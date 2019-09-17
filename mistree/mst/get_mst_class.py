@@ -154,6 +154,10 @@ class GetMST:
                                             two_dimensions=False, scale_cut_length=self.scale_cut_length)
             self.edge_z = edge_z
         self.edge_length, self.edge_x, self.edge_y, self.edge_index = edge_length, edge_x, edge_y, edge_index
+        if self.phi is not None:
+            self.edge_phi = np.array([self.phi[self.edge_index[0]], self.phi[self.edge_index[1]]])
+        if self.theta is not None:
+            self.edge_theta = np.array([self.theta[self.edge_index[0]], self.theta[self.edge_index[1]]])
         if self.scale_cut_length != 0.:
             self.num_removed_edges_fraction = num_removed_edges_fraction
 
@@ -204,12 +208,10 @@ class GetMST:
                                                          box_size=box_size, edge_x=self.edge_x, edge_y=self.edge_y,
                                                          edge_z=self.edge_z, mode='Euclidean', two_dimension=False)
             else:
-                edge_phi = np.array([self.phi[self.edge_index[0]], self.phi[self.edge_index[1]]])
-                edge_theta = np.array([self.theta[self.edge_index[0]], self.theta[self.edge_index[1]]])
                 branch_index, rejected_branch_index = \
                     branches.get_branch_index_sub_divide(sub_divisions, self.edge_index, self.edge_degree,
                                                          box_size=None, phi=self.phi, theta=self.theta,
-                                                         edge_phi=edge_phi, edge_theta=edge_theta, mode='spherical')
+                                                         edge_phi=self.edge_phi, edge_theta=self.edge_theta, mode='spherical')
         self.branch_index = branch_index
         if len(rejected_branch_index) is not 0:
             if self.do_print is True:
@@ -256,7 +258,7 @@ class GetMST:
             y_edge_mean = 0.5 * (self.edge_y[0] + self.edge_y[1])
             mean_edge_length = dens.variable_vs_density(self.x, self.y, dx, x_edge_mean, y_edge_mean, self.edge_length,
                                                         box_size, mode='2D')
-            branch_index_end = dens.get_branch_end_index(self.edge_index, self.edge_degree, self.branch_index)
+            branch_index_end = branches.get_branch_end_index(self.edge_index, self.edge_degree, self.branch_index)
             x_branch_mean = 0.5 * (self.x[branch_index_end[0]] + self.x[branch_index_end[1]])
             y_branch_mean = 0.5 * (self.y[branch_index_end[0]] + self.y[branch_index_end[1]])
             mean_branch_length = dens.variable_vs_density(self.x, self.y, dx, x_branch_mean, y_branch_mean,
