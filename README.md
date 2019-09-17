@@ -1,5 +1,11 @@
 # MiSTree
 
+:mistree: A python module for constructing and analysising Minimum Spanning Trees
+:Author: Krishna Naidoo
+:Version: 1.1
+:Homepage: https://github.com/knaidoo29/mistree
+:Documentation: https://knaidoo29.github.io/mistreedoc/
+
 [![Build Status](https://travis-ci.org/knaidoo29/mistree.svg?branch=master)](https://travis-ci.org/knaidoo29/mistree) [![codecov](https://codecov.io/gh/knaidoo29/mistree/branch/master/graph/badge.svg)](https://codecov.io/gh/knaidoo29/mistree) [![PyPI version](https://badge.fury.io/py/mistree.svg)](https://badge.fury.io/py/mistree) [![status](https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28/status.svg)](https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28) [![DOI](https://zenodo.org/badge/170473458.svg)](https://zenodo.org/badge/latestdoi/170473458) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This is the public repository for MiSTree, a python package for constructing and
