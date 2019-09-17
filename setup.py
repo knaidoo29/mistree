@@ -2,13 +2,19 @@
 
 import setuptools
 from numpy.distutils.core import setup, Extension
-
+"""
 def readme(short=False):
     with open('README.md') as f:
         if short:
             return f.readlines()[1].strip()
         else:
-            return f.read()
+            return f.read()"""
+
+# read the contents of your README file
+from os import path
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md')) as f:
+    long_description = f.read()
 
 ext1 = Extension(name = 'mistree.levy_flight.utility_random_walk',
                  sources = ['mistree/levy_flight/utility_random_walk.f90'])
@@ -18,9 +24,10 @@ ext3 = Extension(name = 'mistree.mst.utility_mst',
                  sources = ['mistree/mst/utility_mst.f90'])
 
 setup(name = 'mistree',
-      version = '1.1',
+      version = '1.1.2',
       description       = "A python package for constructing and analysing the minimum spanning tree",
-      long_description  = readme(),
+      long_description  = long_description,
+      long_description_content_type = 'text/markdown',
       url               = 'https://knaidoo29.github.io/mistreedoc/',
       author            = "Krishna Naidoo",
       author_email      = "krishna.naidoo.11@ucl.ac.uk",
@@ -37,6 +44,7 @@ setup(name = 'mistree',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Fortran',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
