@@ -23,4 +23,5 @@ before_script:
 script: python setup.py test
 
 after_success:
+  - coverage run --source=mypkg setup.py test
   - codecov
