@@ -20,4 +20,6 @@ before_script:
   - ls /home/travis/build/knaidoo29/mistree/mistree/coordinates
 
 script: python setup.py test
- 
+
+after_success:
+  - coveralls
