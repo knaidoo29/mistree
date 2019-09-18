@@ -49,5 +49,5 @@ In depth documentation and tutorials are provided [here](https://knaidoo29.githu
 
 ## Support
 
-If you have any issues with the code or want to suggest ways to improve it please open a new issue (here: https://github.com/knaidoo29/mistree/issues)
+If you have any issues with the code or want to suggest ways to improve it please open a new issue ([here](https://github.com/knaidoo29/mistree/issues))
 or (if you don't have a github account) email _krishna.naidoo.11@ucl.ac.uk_.
