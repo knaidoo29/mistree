@@ -3,6 +3,7 @@ mistree/coordinates/*.pyc
 mistree/levy_flight/*.pyc
 mistree/mst/*.pyc
 mistree/tests/*.pyc
+mistree/tests/__pycache__/*
 
 mistree/levy_flight/*.so
 mistree/mst/*.so
