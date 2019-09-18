@@ -7,8 +7,9 @@ Documentation:  https://knaidoo29.github.io/mistreedoc/
 
 [![Build Status](https://travis-ci.org/knaidoo29/mistree.svg?branch=master)](https://travis-ci.org/knaidoo29/mistree) [![codecov](https://codecov.io/gh/knaidoo29/mistree/branch/master/graph/badge.svg)](https://codecov.io/gh/knaidoo29/mistree) [![PyPI version](https://badge.fury.io/py/mistree.svg)](https://badge.fury.io/py/mistree) [![status](https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28/status.svg)](https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28) [![DOI](https://zenodo.org/badge/170473458.svg)](https://zenodo.org/badge/latestdoi/170473458) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-This is the public repository for MiSTree, a python package for constructing and
-analysing minimum spanning trees.
+## Introduction
+
+The Minimum Spanning Tree (MST) has been used in a broad range of scientific research including computer science, epidemiology, social sciences, particle physics, astronomy and cosmology. Its success in these field has been driven by its sensitivity to the spatial distribution of points. MiSTree, a public Python package, allows a user to construct the MST in a variety of coordinates systems, including Celestial coordinates used in astronomy. The package enables the MST to be constructed quickly by initially using a k-nearest neighbour graph (rather than a matrix of pairwise distances) which is then fed to Kruskal's algorithm to construct the MST. MiSTree enables a user to measure the statistics of the MST and provides classes for binning the MST statistics (into histograms) and plotting the distributions. Including the MST in parameter estimation studies will enable the inclusion of high-order statistics that are often difficult and computationally expensive, particularly on large data sets, to compute.
 
 ## Dependencies
 
@@ -42,12 +43,11 @@ You should now be able to import the module:
 import mistree as mist
 ```
 
-## Further details
+## Documentation
 
 In depth documentation and tutorials are provided [here](https://knaidoo29.github.io/mistreedoc/).
 
-## Contact
+## Support
 
-If you have any issues with the code or want to suggest ways to improve it please email:
-
-_krishna.naidoo.11@ucl.ac.uk_
+If you have any issues with the code or want to suggest ways to improve it please open a new issue (here: https://github.com/knaidoo29/mistree/issues)
+or (if you don't have a github account) email _krishna.naidoo.11@ucl.ac.uk_

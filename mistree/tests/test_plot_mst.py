@@ -64,7 +64,7 @@ def test_PlotHistMST_plot_contour_extra_option():
     pmst.plot(usefraction=True, usemean=False, plt_output='close')
     pmst = mist.PlotHistMST()
     pmst.read_mst(mst_dict)
-    pmst.plot(units='^{\circ}', plt_output='close')
+    pmst.plot(units=r'^{\circ}', plt_output='close')
 
 
 def test_PlotHistMST_plot_comparison():
