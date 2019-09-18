@@ -45,7 +45,7 @@ import mistree as mist
 
 ## Documentation
 
-In depth documentation and tutorials are provided [here](https://knaidoo29.github.io/mistreedoc/).
+In depth documentation and tutorials are provided [here](https://knaidoo29.github.io/mistreedoc/). In addition these tutorials are supplied as ipython notebooks (located in the ``tutorial/notebooks`` folder) which can be downloaded and edited.
 
 ## Support
 
