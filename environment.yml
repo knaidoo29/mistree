@@ -5,5 +5,6 @@ dependencies:
   - scipy
   - matplotlib
   - scikit-learn
+  - pip
   - pip:
     - mistree
