@@ -1,7 +1,0 @@
-channels:
-  - conda-forge
-dependencies:
-  - numpy
-  - matplotlib
-  - scipy
-  - scikit-learn
