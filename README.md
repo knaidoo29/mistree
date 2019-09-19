@@ -45,7 +45,11 @@ import mistree as mist
 
 ## Documentation
 
-In depth documentation and tutorials are provided [here](https://knaidoo29.github.io/mistreedoc/). In addition these tutorials are supplied as ipython notebooks (located in the ``tutorial/notebooks`` folder [here](https://github.com/knaidoo29/mistree/tree/master/tutorials/notebooks)) which can be downloaded and edited.
+In depth documentation and tutorials are provided [here](https://knaidoo29.github.io/mistreedoc/).
+
+## Tutorials
+
+The tutorials in the documentation are supplied as ipython notebooks which can be downloaded from [here](https://github.com/knaidoo29/mistree/tree/master/tutorials/notebooks) or can be run online using [binder](https://mybinder.org/v2/gh/knaidoo29/mistree/master?filepath=tutorials%2Fnotebooks%2F).
 
 ## Support
 
