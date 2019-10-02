@@ -37,6 +37,18 @@ cd mistree
 pip install -e . [--user]
 ```
 
+From the `mistree` directory you can then test the install using `nose`:
+
+```
+python setup.py test
+```
+
+or using `pytest`:
+
+```
+python -m pytest
+```
+
 You should now be able to import the module:
 
 ```python
