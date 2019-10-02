@@ -263,10 +263,10 @@ class PlotHistMST:
         self.labels.append(label)
         self.need_envelopes.append(mst_hist['isgroup'])
 
-    def plot(self, usebox=True, saveas=None, fontsize=16, figsize=(16, 4), units=None,
-             showenvelopes=True, usecomp=False, usemean=True, height_ratios=[2, 1],
+    def plot(self, usebox=True, saveas=None, fontsize=16, figsize=(16, 4), subplot_setup='4x1',
+             units=None, showenvelopes=True, usecomp=False, usemean=True, height_ratios=[2, 1],
              usefraction=False, whichcomp=0, plotzeroline=True, legend=True, subplot_adjust_top=0.85,
-             legend_fontsize=14, legend_column=4, xlabels=[None, None, None, None], plt_output='show'):
+             legend_fontsize=14, legend_column=4, xlabels=[None, None, None, None], dpi=None, plt_output='show'):
         """Outputs the final plot of the MST statistics.
 
         Parameters
@@ -280,6 +280,8 @@ class PlotHistMST:
             Fontsize of axis labels.
         figsize : tuple
             Dimensions of the figure.
+        subplot_setup : string
+            Subplot setup: 4x1 or 2x2.
         units : str
             Units of l and b MST statistics, if None is supplied then we assume it is unitless.
         showenvelopes : bool
@@ -308,6 +310,10 @@ class PlotHistMST:
             Number of keys in each line of the legend.
         xlabels : list
             List of string labels to replace the default if not set to None.
+        dpi : int
+            Pixels per inch for non-vector images.
+        plt_output : string
+            Output type: closed or show.
         """
         # setting up figure
         if self.usenorm == True:
@@ -315,9 +321,16 @@ class PlotHistMST:
         else:
             ylabel = 'N'
         if usecomp == True and self.num_data > 1:
-            f, ((ax1, ax2, ax3, ax4),
-                (ax15, ax25, ax35, ax45)) = plt.subplots(2, 4, figsize=figsize,
-                                                         gridspec_kw={'height_ratios': height_ratios})
+            if subplot_setup == '4x1':
+                f, ((ax1, ax2, ax3, ax4),
+                    (ax15, ax25, ax35, ax45)) = plt.subplots(2, 4, figsize=figsize,
+                                                             gridspec_kw={'height_ratios': height_ratios})
+            elif subplot_setup == '2x2':
+                f, ((ax1, ax2), (ax15, ax25),
+                    (ax3, ax4), (ax35, ax45)) = plt.subplots(4, 2, figsize=figsize,
+                                                             gridspec_kw={'height_ratios': height_ratios + height_ratios})
+            else:
+                pass
             if xlabels[0] is None:
                 ax15.set_xlabel(r'$d$', fontsize=fontsize)
             else:
@@ -368,7 +381,12 @@ class PlotHistMST:
                 ax35.set_ylabel(r'$\frac{%s}{%s_{%s}}-1$' %(ylabel, ylabel, comp_label), fontsize=fontsize)
                 ax45.set_ylabel(r'$\frac{%s}{%s_{%s}}-1$' %(ylabel, ylabel, comp_label), fontsize=fontsize)
         else:
-            f, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, figsize=figsize)
+            if subplot_setup == '4x1':
+                f, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, figsize=figsize)
+            elif subplot_setup == '2x2':
+                f, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=figsize)
+            else:
+                pass
             ax1.set_xlabel(r'$d$', fontsize=fontsize)
             if units is None:
                 ax2.set_xlabel(r'$l$', fontsize=fontsize)
@@ -614,7 +632,10 @@ class PlotHistMST:
         if saveas is None:
             pass
         else:
-            plt.savefig(saveas)
+            if dpi is None:
+                plt.savefig(saveas)
+            else:
+                plt.savefig(saveas, dpi=dpi)
         if plt_output == 'show':
             plt.show()
         elif plt_output == 'close':
