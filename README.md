@@ -20,6 +20,8 @@ The Minimum Spanning Tree (MST) has been used in a broad range of scientific res
 * `scikit-learn`
 * `f2py` (should be installed with numpy)
 
+For testing you will require `nose` or `pytest`.
+
 ## Installation
 
 MiSTree can be installed as follows:
