@@ -316,12 +316,12 @@ def get_branch_shape(edge_index, edge_degree, branch_index, branch_length, mode=
         dx = abs(x[branch_index_end1] - x[branch_index_end2])
         dy = abs(y[branch_index_end1] - y[branch_index_end2])
         branch_end_length = np.sqrt((dx ** 2.) + (dy ** 2.))
-    elif mode == '3D' or mode == 'spherical polar':
+    elif mode == '3D' or mode == 'spherical polar' or mode == 'spherical polar celestial':
         dx = abs(x[branch_index_end1] - x[branch_index_end2])
         dy = abs(y[branch_index_end1] - y[branch_index_end2])
         dz = abs(z[branch_index_end1] - z[branch_index_end2])
         branch_end_length = np.sqrt((dx ** 2.) + (dy ** 2.) + (dz ** 2.))
-    else:
+    elif mode == 'tomographic' or mode == 'tomographic celestial':
         dx = abs(x[branch_index_end1] - x[branch_index_end2])
         dy = abs(y[branch_index_end1] - y[branch_index_end2])
         dz = abs(z[branch_index_end1] - z[branch_index_end2])
