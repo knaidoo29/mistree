@@ -287,7 +287,7 @@ class PlotHistMST:
         showenvelopes : bool
             This determines whether to plot data with input standard deviation.
         showsigma : int
-            Number of sigma errorbars to show.
+            Number of sigma errorbars to plot.
         usecomp : bool
             Determines whether to include comparison subplots.
         usemean : bool

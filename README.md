@@ -1,7 +1,7 @@
 # MiSTree
 
 Author:         Krishna Naidoo                          
-Version:        1.1.4                               
+Version:        1.2.0                               
 Homepage:       https://github.com/knaidoo29/mistree    
 Documentation:  https://knaidoo29.github.io/mistreedoc/
 

@@ -22,17 +22,20 @@ tutorials/notebooks/.ipynb_checkpoints/*
 # remove python 3
 mistree/__pycache__/*
 mistree/coordinate_utility/__pycache__/*
+mistree/coordinate_utility/*.so.dSYM/*
 mistree/levy_flight/__pycache__/*
+mistree/levy_flight/*.so.dSYM/*
 mistree/mst/utility_random_walk/*
+mistree/mst/*.so.dSYM/*
 mistree/mst/__pycache__/*
 mistree/mst/utility_density/*
 mistree/mst/utility_mst/*
+mistree/tests/__pycache__/*
 
 # remove build
 build/*
 dist/*
 mistree.egg-info/*
-
 
 # remove paper JOSS for now
 paper/Makefile
