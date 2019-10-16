@@ -24,7 +24,7 @@ ext3 = Extension(name = 'mistree.mst.utility_mst',
                  sources = ['mistree/mst/utility_mst.f90'])
 
 setup(name = 'mistree',
-      version = '1.1.4',
+      version = '1.2.0',
       description       = "A python package for constructing and analysing the minimum spanning tree",
       long_description  = long_description,
       long_description_content_type = 'text/markdown',
