@@ -264,7 +264,7 @@ class PlotHistMST:
         self.need_envelopes.append(mst_hist['isgroup'])
 
     def plot(self, usebox=True, saveas=None, fontsize=16, figsize=(16, 4), subplot_setup='4x1',
-             units=None, showenvelopes=True, usecomp=False, usemean=True, height_ratios=[2, 1],
+             units=None, showenvelopes=True, showsigma=2, usecomp=False, usemean=True, height_ratios=[2, 1],
              usefraction=False, whichcomp=0, plotzeroline=True, legend=True, subplot_adjust_top=0.85,
              legend_fontsize=14, legend_column=4, xlabels=[None, None, None, None], dpi=None, plt_output='show'):
         """Outputs the final plot of the MST statistics.
@@ -286,6 +286,8 @@ class PlotHistMST:
             Units of l and b MST statistics, if None is supplied then we assume it is unitless.
         showenvelopes : bool
             This determines whether to plot data with input standard deviation.
+        showsigma : int
+            Number of sigma errorbars to show.
         usecomp : bool
             Determines whether to include comparison subplots.
         usemean : bool
@@ -443,8 +445,9 @@ class PlotHistMST:
                                 ax=ax1, color=self.colors[i], alpha=self.alphas[i],
                                 linewidth=self.linewidths[i], linestyle=self.linestyles[i])
             if showenvelopes == True and self.need_envelopes[i] == True:
-                plot_histogram_error(self.binned_data[i]['x_d'], self.binned_data[i]['y_d'], self.binned_data[i]['y_d_std'],
-                                     ax=ax1, color=self.colors[i], alpha=self.alphas_envelope[i])
+                for sigma in range(0, showsigma):
+                    plot_histogram_error(self.binned_data[i]['x_d'], self.binned_data[i]['y_d'], (1+sigma)*self.binned_data[i]['y_d_std'],
+                                         ax=ax1, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
             if usebox == True:
                 plot_histogram_line(self.binned_data[i]['x_l'], self.binned_data[i]['y_l'], x_edges=self.l_edges,
                                     ax=ax2, color=self.colors[i], alpha=self.alphas[i],
@@ -456,12 +459,13 @@ class PlotHistMST:
                                     ax=ax4, color=self.colors[i], alpha=self.alphas[i],
                                     linewidth=self.linewidths[i], linestyle=self.linestyles[i])
                 if showenvelopes == True and self.need_envelopes[i] == True:
-                    plot_histogram_error(self.binned_data[i]['x_l'], self.binned_data[i]['y_l'], self.binned_data[i]['y_l_std'],
-                                         x_edges=self.l_edges, ax=ax2, color=self.colors[i], alpha=self.alphas_envelope[i])
-                    plot_histogram_error(self.binned_data[i]['x_b'], self.binned_data[i]['y_b'], self.binned_data[i]['y_b_std'],
-                                         x_edges=self.b_edges, ax=ax3, color=self.colors[i], alpha=self.alphas_envelope[i])
-                    plot_histogram_error(self.binned_data[i]['x_s'], self.binned_data[i]['y_s'], self.binned_data[i]['y_s_std'],
-                                         ax=ax4, color=self.colors[i], alpha=self.alphas_envelope[i])
+                    for sigma in range(0, showsigma):
+                        plot_histogram_error(self.binned_data[i]['x_l'], self.binned_data[i]['y_l'], (1+sigma)*self.binned_data[i]['y_l_std'],
+                                             x_edges=self.l_edges, ax=ax2, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
+                        plot_histogram_error(self.binned_data[i]['x_b'], self.binned_data[i]['y_b'], (1+sigma)*self.binned_data[i]['y_b_std'],
+                                             x_edges=self.b_edges, ax=ax3, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
+                        plot_histogram_error(self.binned_data[i]['x_s'], self.binned_data[i]['y_s'], (1+sigma)*self.binned_data[i]['y_s_std'],
+                                             ax=ax4, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
             else:
                 ax2.plot(self.binned_data[i]['x_l'], self.binned_data[i]['y_l'],
                          color=self.colors[i], alpha=self.alphas[i],
@@ -473,23 +477,25 @@ class PlotHistMST:
                          color=self.colors[i], alpha=self.alphas[i],
                          linewidth=self.linewidths[i], linestyle=self.linestyles[i])
                 if showenvelopes == True and self.need_envelopes[i] == True:
-                    ax2.fill_between(self.binned_data[i]['x_l'], self.binned_data[i]['y_l']-self.binned_data[i]['y_l_std'],
-                                     self.binned_data[i]['y_l']+self.binned_data[i]['y_l_std'], color=self.colors[i],
-                                     alpha=self.alphas_envelope[i])
-                    ax3.fill_between(self.binned_data[i]['x_b'], self.binned_data[i]['y_b']-self.binned_data[i]['y_b_std'],
-                                     self.binned_data[i]['y_b']+self.binned_data[i]['y_b_std'], color=self.colors[i],
-                                     alpha=self.alphas_envelope[i])
-                    ax4.fill_between(self.binned_data[i]['x_s'], self.binned_data[i]['y_s']-self.binned_data[i]['y_s_std'],
-                                     self.binned_data[i]['y_s']+self.binned_data[i]['y_s_std'], color=self.colors[i],
-                                     alpha=self.alphas_envelope[i])
+                    for sigma in range(0, showsigma):
+                        ax2.fill_between(self.binned_data[i]['x_l'], self.binned_data[i]['y_l']-(1+sigma)*self.binned_data[i]['y_l_std'],
+                                         self.binned_data[i]['y_l']+(1+sigma)*self.binned_data[i]['y_l_std'], color=self.colors[i],
+                                         alpha=self.alphas_envelope[i]/(1+sigma))
+                        ax3.fill_between(self.binned_data[i]['x_b'], self.binned_data[i]['y_b']-(1+sigma)*self.binned_data[i]['y_b_std'],
+                                         self.binned_data[i]['y_b']+(1+sigma)*self.binned_data[i]['y_b_std'], color=self.colors[i],
+                                         alpha=self.alphas_envelope[i]/(1+sigma))
+                        ax4.fill_between(self.binned_data[i]['x_s'], self.binned_data[i]['y_s']-(1+sigma)*self.binned_data[i]['y_s_std'],
+                                         self.binned_data[i]['y_s']+(1+sigma)*self.binned_data[i]['y_s_std'], color=self.colors[i],
+                                         alpha=self.alphas_envelope[i]/(1+sigma))
             if usecomp == True and self.num_data > 1:
                 if usefraction == False:
                     plot_histogram_line(self.binned_data[i]['x_d'], self.binned_data[i]['y_d']-y_d_comp,
                                         ax=ax15, color=self.colors[i], alpha=self.alphas[i],
                                         linewidth=self.linewidths[i], linestyle=self.linestyles[i])
                     if showenvelopes == True and self.need_envelopes[i] == True:
-                        plot_histogram_error(self.binned_data[i]['x_d'], self.binned_data[i]['y_d']-y_d_comp, self.binned_data[i]['y_d_std'],
-                                             ax=ax15, color=self.colors[i], alpha=self.alphas_envelope[i])
+                        for sigma in range(0, showsigma):
+                            plot_histogram_error(self.binned_data[i]['x_d'], self.binned_data[i]['y_d']-y_d_comp, (1+sigma)*self.binned_data[i]['y_d_std'],
+                                                 ax=ax15, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
                     if usebox == True:
                         plot_histogram_line(self.binned_data[i]['x_l'], self.binned_data[i]['y_l']-y_l_comp,
                                             x_edges=self.l_edges, ax=ax25, color=self.colors[i], alpha=self.alphas[i],
@@ -501,15 +507,16 @@ class PlotHistMST:
                                             ax=ax45, color=self.colors[i], alpha=self.alphas[i],
                                             linewidth=self.linewidths[i], linestyle=self.linestyles[i])
                         if showenvelopes == True and self.need_envelopes[i] == True:
-                            plot_histogram_error(self.binned_data[i]['x_l'], self.binned_data[i]['y_l']-y_l_comp,
-                                                 self.binned_data[i]['y_l_std'], x_edges=self.l_edges,
-                                                 ax=ax25, color=self.colors[i], alpha=self.alphas_envelope[i])
-                            plot_histogram_error(self.binned_data[i]['x_b'], self.binned_data[i]['y_b']-y_b_comp,
-                                                 self.binned_data[i]['y_b_std'], x_edges=self.b_edges,
-                                                 ax=ax35, color=self.colors[i], alpha=self.alphas_envelope[i])
-                            plot_histogram_error(self.binned_data[i]['x_s'], self.binned_data[i]['y_s']-y_s_comp,
-                                                 self.binned_data[i]['y_s_std'],
-                                                 ax=ax45, color=self.colors[i], alpha=self.alphas_envelope[i])
+                            for sigma in range(0, showsigma):
+                                plot_histogram_error(self.binned_data[i]['x_l'], self.binned_data[i]['y_l']-y_l_comp,
+                                                     (1+sigma)*self.binned_data[i]['y_l_std'], x_edges=self.l_edges,
+                                                     ax=ax25, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
+                                plot_histogram_error(self.binned_data[i]['x_b'], self.binned_data[i]['y_b']-y_b_comp,
+                                                     (1+sigma)*self.binned_data[i]['y_b_std'], x_edges=self.b_edges,
+                                                     ax=ax35, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
+                                plot_histogram_error(self.binned_data[i]['x_s'], self.binned_data[i]['y_s']-y_s_comp,
+                                                     (1+sigma)*self.binned_data[i]['y_s_std'],
+                                                     ax=ax45, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
                     else:
                         ax25.plot(self.binned_data[i]['x_l'], self.binned_data[i]['y_l']-y_l_comp,
                                   color=self.colors[i], alpha=self.alphas[i],
@@ -521,24 +528,26 @@ class PlotHistMST:
                                   color=self.colors[i], alpha=self.alphas[i],
                                   linewidth=self.linewidths[i], linestyle=self.linestyles[i])
                         if showenvelopes == True and self.need_envelopes[i] == True:
-                            ax25.fill_between(self.binned_data[i]['x_l'], self.binned_data[i]['y_l']-self.binned_data[i]['y_l_std']-y_l_comp,
-                                              self.binned_data[i]['y_l']+self.binned_data[i]['y_l_std']-y_l_comp,
-                                              color=self.colors[i], alpha=self.alphas_envelope[i])
-                            ax35.fill_between(self.binned_data[i]['x_b'], self.binned_data[i]['y_b']-self.binned_data[i]['y_b_std']-y_b_comp,
-                                              self.binned_data[i]['y_b']+self.binned_data[i]['y_b_std']-y_b_comp,
-                                              color=self.colors[i], alpha=self.alphas_envelope[i])
-                            ax45.fill_between(self.binned_data[i]['x_s'], self.binned_data[i]['y_s']-self.binned_data[i]['y_s_std']-y_s_comp,
-                                              self.binned_data[i]['y_s']+self.binned_data[i]['y_s_std']-y_s_comp, color=self.colors[i],
-                                              alpha=self.alphas_envelope[i])
+                            for sigma in range(0, showsigma):
+                                ax25.fill_between(self.binned_data[i]['x_l'], self.binned_data[i]['y_l']-(1+sigma)*self.binned_data[i]['y_l_std']-y_l_comp,
+                                                  self.binned_data[i]['y_l']+(1+sigma)*self.binned_data[i]['y_l_std']-y_l_comp,
+                                                  color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
+                                ax35.fill_between(self.binned_data[i]['x_b'], self.binned_data[i]['y_b']-(1+sigma)*self.binned_data[i]['y_b_std']-y_b_comp,
+                                                  self.binned_data[i]['y_b']+(1+sigma)*self.binned_data[i]['y_b_std']-y_b_comp,
+                                                  color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
+                                ax45.fill_between(self.binned_data[i]['x_s'], self.binned_data[i]['y_s']-(1+sigma)*self.binned_data[i]['y_s_std']-y_s_comp,
+                                                  self.binned_data[i]['y_s']+(1+sigma)*self.binned_data[i]['y_s_std']-y_s_comp, color=self.colors[i],
+                                                  alpha=self.alphas_envelope[i]/(1+sigma))
                 else:
                     plot_histogram_line(self.binned_data[i]['x_d'][c1], self.binned_data[i]['y_d'][c1]/y_d_comp[c1]-1.,
                                         ax=ax15, color=self.colors[i], alpha=self.alphas[i],
                                         linewidth=self.linewidths[i], linestyle=self.linestyles[i])
                     if showenvelopes == True and self.need_envelopes[i] == True:
-                        plot_histogram_confidence(self.binned_data[i]['x_d'][c1],
-                                                  (self.binned_data[i]['y_d'][c1]-self.binned_data[i]['y_d_std'][c1])/y_d_comp[c1]-1,
-                                                  (self.binned_data[i]['y_d'][c1]+self.binned_data[i]['y_d_std'][c1])/y_d_comp[c1]-1,
-                                                  ax=ax15, color=self.colors[i], alpha=self.alphas_envelope[i])
+                        for sigma in range(0, showsigma):
+                            plot_histogram_confidence(self.binned_data[i]['x_d'][c1],
+                                                      (self.binned_data[i]['y_d'][c1]-(1+sigma)*self.binned_data[i]['y_d_std'][c1])/y_d_comp[c1]-1,
+                                                      (self.binned_data[i]['y_d'][c1]+(1+sigma)*self.binned_data[i]['y_d_std'][c1])/y_d_comp[c1]-1,
+                                                      ax=ax15, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
                     if usebox == True:
                         plot_histogram_line(self.binned_data[i]['x_l'][c2], self.binned_data[i]['y_l'][c2]/y_l_comp[c2]-1.,
                                             x_edges=self.l_edges, ax=ax25, color=self.colors[i], alpha=self.alphas[i],
@@ -550,18 +559,19 @@ class PlotHistMST:
                                             ax=ax45, color=self.colors[i], alpha=self.alphas[i],
                                             linewidth=self.linewidths[i], linestyle=self.linestyles[i])
                         if showenvelopes == True and self.need_envelopes[i] == True:
-                            plot_histogram_confidence(self.binned_data[i]['x_l'][c2],
-                                                      (self.binned_data[i]['y_l'][c2]-self.binned_data[i]['y_l_std'][c2])/y_l_comp[c2]-1,
-                                                      (self.binned_data[i]['y_l'][c2]+self.binned_data[i]['y_l_std'][c2])/y_l_comp[c2]-1,
-                                                      x_edges=self.l_edges, ax=ax25, color=self.colors[i], alpha=self.alphas_envelope[i])
-                            plot_histogram_confidence(self.binned_data[i]['x_b'][c3],
-                                                      (self.binned_data[i]['y_b'][c3]-self.binned_data[i]['y_b_std'][c3])/y_b_comp[c3]-1,
-                                                      (self.binned_data[i]['y_b'][c3]+self.binned_data[i]['y_b_std'][c3])/y_b_comp[c3]-1,
-                                                      x_edges=self.b_edges, ax=ax35, color=self.colors[i], alpha=self.alphas_envelope[i])
-                            plot_histogram_confidence(self.binned_data[i]['x_s'][c4],
-                                                      (self.binned_data[i]['y_s'][c4]-self.binned_data[i]['y_s_std'][c4])/y_s_comp[c4]-1,
-                                                      (self.binned_data[i]['y_s'][c4]+self.binned_data[i]['y_s_std'][c4])/y_s_comp[c4]-1,
-                                                      ax=ax45, color=self.colors[i], alpha=self.alphas_envelope[i])
+                            for sigma in range(0, showsigma):
+                                plot_histogram_confidence(self.binned_data[i]['x_l'][c2],
+                                                          (self.binned_data[i]['y_l'][c2]-(1+sigma)*self.binned_data[i]['y_l_std'][c2])/y_l_comp[c2]-1,
+                                                          (self.binned_data[i]['y_l'][c2]+(1+sigma)*self.binned_data[i]['y_l_std'][c2])/y_l_comp[c2]-1,
+                                                          x_edges=self.l_edges, ax=ax25, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
+                                plot_histogram_confidence(self.binned_data[i]['x_b'][c3],
+                                                          (self.binned_data[i]['y_b'][c3]-(1+sigma)*self.binned_data[i]['y_b_std'][c3])/y_b_comp[c3]-1,
+                                                          (self.binned_data[i]['y_b'][c3]+(1+sigma)*self.binned_data[i]['y_b_std'][c3])/y_b_comp[c3]-1,
+                                                          x_edges=self.b_edges, ax=ax35, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
+                                plot_histogram_confidence(self.binned_data[i]['x_s'][c4],
+                                                          (self.binned_data[i]['y_s'][c4]-(1+sigma)*self.binned_data[i]['y_s_std'][c4])/y_s_comp[c4]-1,
+                                                          (self.binned_data[i]['y_s'][c4]+(1+sigma)*self.binned_data[i]['y_s_std'][c4])/y_s_comp[c4]-1,
+                                                          ax=ax45, color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma))
                     else:
                         ax25.plot(self.binned_data[i]['x_l'][c2], self.binned_data[i]['y_l'][c2]/y_l_comp[c2]-1.,
                                  color=self.colors[i], alpha=self.alphas[i],
@@ -573,21 +583,22 @@ class PlotHistMST:
                                  color=self.colors[i], alpha=self.alphas[i],
                                  linewidth=self.linewidths[i], linestyle=self.linestyles[i])
                         if showenvelopes == True and self.need_envelopes[i] == True:
-                            ax25.fill_between(self.binned_data[i]['x_l'][c2],
-                                              (self.binned_data[i]['y_l'][c2]-self.binned_data[i]['y_l_std'][c2])/y_l_comp[c2]-1.,
-                                              (self.binned_data[i]['y_l'][c2]+self.binned_data[i]['y_l_std'][c2])/y_l_comp[c2]-1.,
-                                              color=self.colors[i], alpha=self.alphas_envelope[i],
-                                              linewidth=self.linewidths[i], linestyle=self.linestyles[i])
-                            ax35.fill_between(self.binned_data[i]['x_b'][c3],
-                                              (self.binned_data[i]['y_b'][c3]-self.binned_data[i]['y_b_std'][c3])/y_b_comp[c3]-1.,
-                                              (self.binned_data[i]['y_b'][c3]+self.binned_data[i]['y_b_std'][c3])/y_b_comp[c3]-1.,
-                                              color=self.colors[i], alpha=self.alphas_envelope[i],
-                                              linewidth=self.linewidths[i], linestyle=self.linestyles[i])
-                            ax45.fill_between(self.binned_data[i]['x_s'][c4],
-                                              (self.binned_data[i]['y_s'][c4]-self.binned_data[i]['y_s_std'][c4])/y_s_comp[c4]-1.,
-                                              (self.binned_data[i]['y_s'][c4]+self.binned_data[i]['y_s_std'][c4])/y_s_comp[c4]-1.,
-                                              color=self.colors[i], alpha=self.alphas_envelope[i],
-                                              linewidth=self.linewidths[i], linestyle=self.linestyles[i])
+                            for sigma in range(0, showsigma):
+                                ax25.fill_between(self.binned_data[i]['x_l'][c2],
+                                                  (self.binned_data[i]['y_l'][c2]-(1+sigma)*self.binned_data[i]['y_l_std'][c2])/y_l_comp[c2]-1.,
+                                                  (self.binned_data[i]['y_l'][c2]+(1+sigma)*self.binned_data[i]['y_l_std'][c2])/y_l_comp[c2]-1.,
+                                                  color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma),
+                                                  linewidth=self.linewidths[i], linestyle=self.linestyles[i])
+                                ax35.fill_between(self.binned_data[i]['x_b'][c3],
+                                                  (self.binned_data[i]['y_b'][c3]-(1+sigma)*self.binned_data[i]['y_b_std'][c3])/y_b_comp[c3]-1.,
+                                                  (self.binned_data[i]['y_b'][c3]+(1+sigma)*self.binned_data[i]['y_b_std'][c3])/y_b_comp[c3]-1.,
+                                                  color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma),
+                                                  linewidth=self.linewidths[i], linestyle=self.linestyles[i])
+                                ax45.fill_between(self.binned_data[i]['x_s'][c4],
+                                                  (self.binned_data[i]['y_s'][c4]-(1+sigma)*self.binned_data[i]['y_s_std'][c4])/y_s_comp[c4]-1.,
+                                                  (self.binned_data[i]['y_s'][c4]+(1+sigma)*self.binned_data[i]['y_s_std'][c4])/y_s_comp[c4]-1.,
+                                                  color=self.colors[i], alpha=self.alphas_envelope[i]/(1+sigma),
+                                                  linewidth=self.linewidths[i], linestyle=self.linestyles[i])
                 if plotzeroline == True:
                     ax15.axhline(0., color='k', linestyle=':', linewidth=1.)
                     ax25.axhline(0., color='k', linestyle=':', linewidth=1.)
