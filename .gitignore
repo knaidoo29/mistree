@@ -51,3 +51,6 @@ paper/*.tex
 paper/*.py
 paper/*.blg
 paper/*.bbl
+
+# remove paper entirely now that it has been published
+paper/*
