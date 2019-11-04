@@ -6,6 +6,7 @@ Homepage:       https://github.com/knaidoo29/mistree
 Documentation:  https://knaidoo29.github.io/mistreedoc/
 
 [![Build Status](https://travis-ci.org/knaidoo29/mistree.svg?branch=master)](https://travis-ci.org/knaidoo29/mistree) [![codecov](https://codecov.io/gh/knaidoo29/mistree/branch/master/graph/badge.svg)](https://codecov.io/gh/knaidoo29/mistree) [![PyPI version](https://badge.fury.io/py/mistree.svg)](https://badge.fury.io/py/mistree) [![status](https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28/status.svg)](https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28) [![DOI](https://zenodo.org/badge/170473458.svg)](https://zenodo.org/badge/latestdoi/170473458) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/knaidoo29/mistree/master?filepath=tutorials%2Fnotebooks%2F)
+[![ascl](https://img.shields.io/badge/ascl-1910.016-blue.svg?colorB=262255)](http://ascl.net/1910.016)
 
 ## Introduction
 
@@ -64,6 +65,26 @@ In depth documentation and tutorials are provided [here](https://knaidoo29.githu
 ## Tutorials
 
 The tutorials in the documentation are supplied as ipython notebooks which can be downloaded from [here](https://github.com/knaidoo29/mistree/tree/master/tutorials/notebooks) or can be run online using [binder](https://mybinder.org/v2/gh/knaidoo29/mistree/master?filepath=tutorials%2Fnotebooks%2F).
+
+## Citing
+
+You can cite ``MiSTree`` using the following BibTex:
+
+```
+@ARTICLE{Naidoo2019,
+       author = {{Naidoo}, Krishna},
+        title = "{MiSTree: a Python package for constructing and analysing Minimum Spanning Trees}",
+      journal = {The Journal of Open Source Software},
+         year = "2019",
+        month = "Oct",
+       volume = {4},
+       number = {42},
+          eid = {1721},
+        pages = {1721},
+          doi = {10.21105/joss.01721},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2019JOSS....4.1721N}
+}
+```
 
 ## Support
 
