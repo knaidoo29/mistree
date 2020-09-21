@@ -30,9 +30,28 @@ MiSTree can be installed as follows:
 ```
 pip install mistree [--user]
 ```
-
 The `--user` is optional and only required if you don’t have write permission. If you
-want to work on the Github version you can clone the repository and install an editable version:
+are using a windows machine this may not work, in this case (or as an alternative to pip) clone the repository,
+
+```
+git clone https://github.com/knaidoo29/mistree.git
+cd mistree
+```
+
+and install by either running
+
+```
+pip install . [--user]
+```
+
+or
+
+```
+python setup.py build
+python setup.py install
+```
+
+Similarly, if you would like to work and edit mistree you can clone the repository and install an editable version:
 
 ```
 git clone https://github.com/knaidoo29/mistree.git
