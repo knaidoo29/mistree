@@ -5,6 +5,8 @@ mistree/mst/*.pyc
 mistree/tests/*.pyc
 mistree/tests/__pycache__/*
 
+*__pycache__
+
 mistree/levy_flight/*.so
 mistree/mst/*.so
 
