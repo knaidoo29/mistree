@@ -2,11 +2,10 @@
 MiSTree
 =======
 
-.. image:: https://readthedocs.org/projects/mistree/badge/?version=latest
-    :target: https://mistree.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
 .. image:: https://badge.fury.io/py/mistree.svg
     :target: https://badge.fury.io/py/mistree
+.. image:: https://readthedocs.org/projects/mistree/badge/?version=latest
+    :target: https://mistree.readthedocs.io/en/latest/?badge=latest
 .. image:: https://img.shields.io/badge/License-MIT-blue.svg
     :target: https://opensource.org/licenses/MIT
 .. image:: https://mybinder.org/badge_logo.svg
@@ -22,7 +21,7 @@ MiSTree
 +---------------+-----------------------------------------+
 | Author        | Krishna Naidoo                          |
 +---------------+-----------------------------------------+
-| Version       | 1.3.0                                   |
+| Version       | 2.0.0-alpha-0                           |
 +---------------+-----------------------------------------+
 | Repository    | https://github.com/knaidoo29/mistree    |
 +---------------+-----------------------------------------+
