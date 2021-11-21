@@ -1,0 +1,51 @@
+Regarding uploading to pypi and conda.
+
+Pypi upload
+-----------
+
+If you don't already have twine:
+
+    python -m pip install --user --upgrade twine
+
+To upload your package first get rid of existing builds:
+
+    rm -r build
+    rm -r dist
+    rm -r magpie_pkg.egg-info
+
+To build and install portable versions for pip (there might be some redundant lines
+here but its working)
+
+    python setup.py build
+    python setup.py install
+    python setup.py sdist bdist_wheel
+
+    python -m twine check dist/*
+
+    python -m twine upload dist/*
+
+Pypi username and password are requested for the last step.
+
+conda upload
+------------
+
+To start this you need to create the files in conda-recipe, i.e. meta.yaml, build.sh
+and bld.bat. Once these are done (look here for info on this:
+https://docs.conda.io/projects/conda-build/en/latest/user-guide/tutorials/build-pkgs.html)
+
+Build the conda version inside the root directory for magpie:
+
+    conda-build conda-recipe
+
+This can take a while as it sets up the entire environment and dependencies from
+scratch, it doesn't work from your existing python environment. Pay attention to
+the <long-magpie-conda-install>.tar.bz2 file that is produced as we will need this
+later.
+
+First login to your anaconda account.
+
+    anaconda login
+
+And then upload with the following and alter the <> to the real file name.
+
+    anaconda upload <long-magpie-conda-install>.tar.bz2
