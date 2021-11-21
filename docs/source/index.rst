@@ -29,7 +29,7 @@ MiSTree
 +---------------+-----------------------------------------+
 
 .. warning::
-  Do not use. This is a development branch of MiSTree for a major overhaul for an eventual version 2 release.
+  Not ready for use. This is a development branch for a future version 2 release.
 
 Contents
 ========

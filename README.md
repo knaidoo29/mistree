@@ -1,5 +1,7 @@
 # MiSTree
 
+> **_WARNING:_** Not ready for use. This is a development branch for a future version 2 release. 
+
 |               |                                       |
 |---------------|---------------------------------------|
 | Author        | Krishna Naidoo                        |          
@@ -17,7 +19,7 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/knaidoo29/mistree/master?filepath=tutorials%2Fnotebooks%2F)
 [![ascl](https://img.shields.io/badge/ascl-1910.016-blue.svg?colorB=262255)](http://ascl.net/1910.016)
 
-> **_WARNING:_** Version 2 is a complete rewrite of the MiSTree python module. Version 2 improves all the functions and classes from version 1 and adds new powerful analysis functions for structure finding. This makes version 2 a substantially more powerful module for the analysis of minimum spanning trees (MST) and point processes. To improve the readability and capabilities of MiSTree we have taken the liberty to change function names and classes. This means you can do a lot more with MiSTree than you could do before but this also means that you cannot seamlessly transition from version 1 to 2. We suggest you transition when you have the time and in the meantime continue to use version 1.2.0 whose documentation remains at https://knaidoo29.github.io/mistreedoc/ which can be used to download and install this earlier version.
+> **_NOTE:_** Version 2 is a complete rewrite of the MiSTree python module. Version 2 improves all the functions and classes from version 1 and adds new powerful analysis functions for structure finding. This makes version 2 a substantially more powerful module for the analysis of minimum spanning trees (MST) and point processes. To improve the readability and capabilities of MiSTree we have taken the liberty to change function names and classes. This means you can do a lot more with MiSTree than you could do before but this also means that you cannot seamlessly transition from version 1 to 2. We suggest you transition when you have the time and in the meantime continue to use version 1.2.0 whose documentation remains at https://knaidoo29.github.io/mistreedoc/ which can be used to download and install this earlier version.
 
 ## Introduction
 
