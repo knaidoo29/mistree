@@ -2,8 +2,22 @@
 MiSTree
 =======
 
-.. image:: https://badge.fury.io/py/magpie-pkg.svg
-    :target: https://badge.fury.io/py/magpie-pkg
+.. image:: https://readthedocs.org/projects/mistree/badge/?version=latest
+    :target: https://mistree.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+.. image:: https://badge.fury.io/py/mistree.svg
+    :target: https://badge.fury.io/py/mistree
+.. image:: https://img.shields.io/badge/License-MIT-blue.svg
+    :target: https://opensource.org/licenses/MIT
+.. image:: https://mybinder.org/badge_logo.svg
+    :target: https://mybinder.org/v2/gh/knaidoo29/mistree/master?filepath=tutorials%2Fnotebooks%2F
+.. image:: https://img.shields.io/badge/ascl-1910.016-blue.svg?colorB=262255
+    :target: http://ascl.net/1910.016
+.. image:: https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28/status.svg
+    :target: https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28
+.. image:: https://zenodo.org/badge/170473458.svg
+    :target: https://zenodo.org/badge/latestdoi/170473458
+
 
 +---------------+-----------------------------------------+
 | Author        | Krishna Naidoo                          |
@@ -12,7 +26,7 @@ MiSTree
 +---------------+-----------------------------------------+
 | Repository    | https://github.com/knaidoo29/mistree    |
 +---------------+-----------------------------------------+
-| Documentation | https://mistre.readthedocs.io/          |
+| Documentation | https://mistre.rtfd.io/                 |
 +---------------+-----------------------------------------+
 
 .. warning::
