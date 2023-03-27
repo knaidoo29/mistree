@@ -51,8 +51,8 @@ def get_branch_index(edge_index, edge_degree, branch_cutting_frequency=1000):
     check_end = np.ones(len(index_branch_end))
     branch_index = []
     branch_index_rejected = []
-    mask_end = np.ones(index_branch_end.shape, dtype=np.bool)
-    mask_mid = np.ones(index_branch_mid.shape, dtype=np.bool)
+    mask_end = np.ones(index_branch_end.shape, dtype=bool)
+    mask_mid = np.ones(index_branch_mid.shape, dtype=bool)
     count = 0
     item = 0
     while item < len(index_branch_end):
