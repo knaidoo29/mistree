@@ -194,15 +194,15 @@ class GetMST:
             The number of divisions used to divide the data set in each axis. Used for speeding up the branch
             finding algorithm when using many points (> 100000).
         """
-        if sub_divisions is 1:
+        if sub_divisions == 1:
             branch_index, rejected_branch_index = branches.get_branch_index(self.edge_index, self.edge_degree)
         else:
-            if self._mode is '2D':
+            if self._mode == '2D':
                 branch_index, rejected_branch_index = \
                     branches.get_branch_index_sub_divide(sub_divisions, self.edge_index, self.edge_degree,
                                                          box_size=box_size, edge_x=self.edge_x, edge_y=self.edge_y,
                                                          mode='Euclidean', two_dimension=True)
-            elif self._mode is '3D':
+            elif self._mode == '3D':
                 branch_index, rejected_branch_index = \
                     branches.get_branch_index_sub_divide(sub_divisions, self.edge_index, self.edge_degree,
                                                          box_size=box_size, edge_x=self.edge_x, edge_y=self.edge_y,
@@ -213,7 +213,7 @@ class GetMST:
                                                          box_size=None, phi=self.phi, theta=self.theta,
                                                          edge_phi=self.edge_phi, edge_theta=self.edge_theta, mode='spherical')
         self.branch_index = branch_index
-        if len(rejected_branch_index) is not 0:
+        if len(rejected_branch_index) != 0:
             if self.do_print is True:
                 print(str(float(len(rejected_branch_index))) + ' branches were incompleted.')
         branch_length = [np.sum(self.edge_length[i]) for i in branch_index]

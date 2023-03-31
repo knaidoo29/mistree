@@ -80,14 +80,14 @@ def get_branch_index(edge_index, edge_degree, branch_cutting_frequency=1000):
                         done = 1.
                     else:
                         check_end[condition] = 0.
-                        _twig.append(index_branch_end[condition])
+                        _twig.append(index_branch_end[condition][0])
                         done = 1.
                         mask_end[condition] = False
                         branch_index.append(np.ndarray.tolist(np.ndarray.flatten(np.array(_twig))))
                 else:
                     if len(condition) == 1:
                         check_mid[condition] = 0.
-                        _twig.append(index_branch_mid[condition])
+                        _twig.append(index_branch_mid[condition][0])
                         if index_branch_mid1[condition] == node_index:
                             node_index = index_branch_mid2[condition]
                         elif index_branch_mid2[condition] == node_index:
@@ -241,7 +241,7 @@ def get_branch_index_sub_divide(sub_divisions, edge_index, edge_degree, box_size
         branch_index_cut_corrected = [np.ndarray.tolist(condition[i]) for i in branch_index_cut]
         branch_index_total = branch_index_total + branch_index_cut_corrected
         total_mask[[item for sublist in branch_index_total for item in sublist]] = 0.
-        if len(branch_index_rejected_cut) is not 0:
+        if len(branch_index_rejected_cut) != 0:
             branch_index_rejected_total = branch_index_rejected_total + \
                                           np.ndarray.tolist(condition[branch_index_rejected_cut])
         total_mask[branch_index_rejected_total] = 0.
