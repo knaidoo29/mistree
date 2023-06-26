@@ -76,14 +76,14 @@ def get_branch_index(edge_index, edge_degree, branch_cutting_frequency=1000):
                                          ((check_end == 1.) & (index_branch_end2 == node_index)))[0]
                     if len(condition) == 0:
                         branch_index_rejected = branch_index_rejected + \
-                                                np.ndarray.tolist(np.ndarray.flatten(np.array(_twig)))
+                                                np.ndarray.tolist(np.ndarray.flatten(np.array(_twig, dtype=object)))
                         done = 1.
                     else:
                         check_end[condition] = 0.
                         _twig.append(index_branch_end[condition])
                         done = 1.
                         mask_end[condition] = False
-                        branch_index.append(np.ndarray.tolist(np.ndarray.flatten(np.array(_twig))))
+                        branch_index.append(np.ndarray.tolist(np.ndarray.flatten(np.array(_twig, dtype=object))))
                 else:
                     if len(condition) == 1:
                         check_mid[condition] = 0.
@@ -136,7 +136,7 @@ def get_branch_index(edge_index, edge_degree, branch_cutting_frequency=1000):
             count = count + 1
             item = item + 1
     branch_index_rejected = branch_index_rejected + np.ndarray.tolist(np.ndarray.flatten(np.array(index_branch_mid)))
-    branch_index = [np.ndarray.tolist(np.hstack(np.array(branch_index[i]))) for i in range(0, len(branch_index))]
+    branch_index = [np.ndarray.tolist(np.hstack(np.array(branch_index[i], dtype=object))) for i in range(0, len(branch_index))]
     if len(branch_index_rejected) != 0:
         branch_index_rejected = np.ndarray.tolist(np.hstack(np.array(branch_index_rejected)))
     return branch_index, branch_index_rejected

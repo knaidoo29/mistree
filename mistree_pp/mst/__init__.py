@@ -8,8 +8,8 @@ from .branches import get_branch_shape
 # construction functions
 from .construct import construct_mst
 
-# density vs variable functions
-from .density import variable_vs_density
+# # density vs variable functions
+# from .density import variable_vs_density
 
 # graph functions
 from .graph import graph2data
