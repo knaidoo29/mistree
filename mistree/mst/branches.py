@@ -83,7 +83,7 @@ def get_branch_index(edge_index, edge_degree, branch_cutting_frequency=1000):
                         _twig.append(index_branch_end[condition])
                         done = 1.
                         mask_end[condition] = False
-                        branch_index.append(np.ndarray.tolist(np.ndarray.flatten(np.array(_twig))))
+                        branch_index.append(np.ndarray.tolist(np.ndarray.flatten(np.array(_twig, dtype=object))))
                 else:
                     if len(condition) == 1:
                         check_mid[condition] = 0.
@@ -136,7 +136,7 @@ def get_branch_index(edge_index, edge_degree, branch_cutting_frequency=1000):
             count = count + 1
             item = item + 1
     branch_index_rejected = branch_index_rejected + np.ndarray.tolist(np.ndarray.flatten(np.array(index_branch_mid)))
-    branch_index = [np.ndarray.tolist(np.hstack(np.array(branch_index[i]))) for i in range(0, len(branch_index))]
+    branch_index = [np.ndarray.tolist(np.hstack(np.array(branch_index[i], dtype=object))) for i in range(0, len(branch_index))]
     if len(branch_index_rejected) != 0:
         branch_index_rejected = np.ndarray.tolist(np.hstack(np.array(branch_index_rejected)))
     return branch_index, branch_index_rejected
@@ -189,7 +189,7 @@ def get_branch_index_sub_divide(sub_divisions, edge_index, edge_degree, box_size
         yy = np.arange(y_min, y_max + dy, dy)
         xx_mid = 0.5 * (xx[1:len(xx)] + xx[0:len(xx) - 1])
         yy_mid = 0.5 * (yy[1:len(yy)] + yy[0:len(yy) - 1])
-        if two_dimension is True:
+        if two_dimension == True:
             x_div, y_div = np.meshgrid(xx_mid, yy_mid, indexing='ij')
             x_div = np.ndarray.flatten(x_div)
             y_div = np.ndarray.flatten(y_div)
@@ -221,11 +221,11 @@ def get_branch_index_sub_divide(sub_divisions, edge_index, edge_degree, box_size
         length = len(phi_div)
         total_mask = np.ones(len(edge_phi[0]))
     for k in range(0, length):
-        if mode == 'Euclidean' and two_dimension is True:
+        if mode == 'Euclidean' and two_dimension == True:
             xd, yd = x_div[k], y_div[k]
             condition = np.where((total_mask == 1.) & ((edge_x[0] >= xd - dx / 2.) | (edge_x[0] <= xd + dx / 2.) |
                                  (edge_y[0] >= yd - dx / 2.) | (edge_y[0] <= yd + dx / 2.)))[0]
-        elif mode == 'Euclidean' and two_dimension is False:
+        elif mode == 'Euclidean' and two_dimension == False:
             xd, yd, zd = x_div[k], y_div[k], z_div[k]
             condition = np.where((total_mask == 1.) & ((edge_x[0] >= xd - dx / 2.) | (edge_x[0] <= xd + dx / 2.) |
                                  (edge_y[0] >= yd - dx / 2.) | (edge_y[0] < yd + dx / 2.) | (edge_z[0] >= zd - dx / 2.)
@@ -241,7 +241,7 @@ def get_branch_index_sub_divide(sub_divisions, edge_index, edge_degree, box_size
         branch_index_cut_corrected = [np.ndarray.tolist(condition[i]) for i in branch_index_cut]
         branch_index_total = branch_index_total + branch_index_cut_corrected
         total_mask[[item for sublist in branch_index_total for item in sublist]] = 0.
-        if len(branch_index_rejected_cut) is not 0:
+        if len(branch_index_rejected_cut) != 0:
             branch_index_rejected_total = branch_index_rejected_total + \
                                           np.ndarray.tolist(condition[branch_index_rejected_cut])
         total_mask[branch_index_rejected_total] = 0.

@@ -4,6 +4,8 @@ mistree/levy_flight/*.pyc
 mistree/mst/*.pyc
 mistree/tests/*.pyc
 mistree/tests/__pycache__/*
+.pytest_cache/*
+.eggs/*
 
 *__pycache__
 
