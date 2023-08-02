@@ -122,7 +122,7 @@ def get_levy_flight(size, mode='3D', periodic=True, box_size=75., t_0=0.2, alpha
     """
     _u = np.random.uniform(0., 1., size - 1)
     _steps = t_0 / (1. - _u) ** (1. / alpha)
-    if periodic is False:
+    if periodic == False:
         box_size = None
     if mode == '2D':
         x, y = get_random_flight(_steps, mode='2D', box_size=box_size)
@@ -175,7 +175,7 @@ def get_adjusted_levy_flight(size, mode='3D', periodic=True, box_size=75.,
     _steps = (t_0 - t_s) * (_u / beta) ** (1. / gamma) + t_s
     condition = np.where(_u >= beta)[0]
     _steps[condition] = t_0*(1.+((beta-_u[condition])/(1.-beta)))**(-1./alpha)
-    if periodic is False:
+    if periodic == False:
         box_size = None
     if mode == '2D':
         x, y = get_random_flight(_steps, mode='2D', box_size=box_size)

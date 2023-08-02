@@ -100,7 +100,7 @@ def spherical_2_unit_sphere(phi, theta, units='degrees'):
     x, y, z : array
         cartesian coordinates.
     """
-    if np.isscalar(phi) is True:
+    if np.isscalar(phi) == True:
         return spherical_2_cartesian(1., phi, theta, units=units)
     else:
         return spherical_2_cartesian(np.ones(len(phi)), phi, theta, units=units)
@@ -127,7 +127,7 @@ def celestial_2_unit_sphere(ra, dec, units='degrees', output='both'):
     x, y, z : array
         'cartesian': cartesian coordinates.
     """
-    if np.isscalar(ra) is True:
+    if np.isscalar(ra) == True:
         return celestial_2_cartesian(1., ra, dec, units=units, output=output)
     else:
         return celestial_2_cartesian(np.ones(len(ra)), ra, dec, units=units, output=output)

@@ -36,12 +36,12 @@ def construct_mst(x, y, z=None, k_neighbours=20, two_dimensions=False, scale_cut
     num_removed_edges : int, optional
         Number of removed edges. Only given and applicable if scale_cut_length is given.
     """
-    if two_dimensions is True:
+    if two_dimensions == True:
         vertices = np.array([x, y]).T
     else:
         vertices = np.array([x, y, z]).T
     if scale_cut_length != 0.:
-        if two_dimensions is True:
+        if two_dimensions == True:
             x, y, k_nearest_neighbour_graph, num_removed_edges = \
                 scale_cut.k_nearest_neighbour_scale_cut(x, y, scale_cut_length, k_neighbours)
         else:
@@ -49,7 +49,7 @@ def construct_mst(x, y, z=None, k_neighbours=20, two_dimensions=False, scale_cut
                 scale_cut.k_nearest_neighbour_scale_cut(x, y, scale_cut_length, k_neighbours, z=z)
     else:
         k_nearest_neighbour_graph = kneighbors_graph(vertices, n_neighbors=k_neighbours, mode='distance')
-    if is_tomo is True:
+    if is_tomo == True:
         k_nearest_neighbour_graph = tomo.convert_tomo_knn_length2angle(k_nearest_neighbour_graph, len(x))
     tree = minimum_spanning_tree(k_nearest_neighbour_graph, overwrite=True)
     tree = tree.tocoo()
@@ -62,18 +62,18 @@ def construct_mst(x, y, z=None, k_neighbours=20, two_dimensions=False, scale_cut
     y1 = y[index1]
     y2 = y[index2]
     edge_y = np.array([y1, y2])
-    if two_dimensions is False:
+    if two_dimensions == False:
         z1 = z[index1]
         z2 = z[index2]
         edge_z = np.array([z1, z2])
     edge_index = np.array([index1, index2])
     if scale_cut_length == 0.:
-        if two_dimensions is True:
+        if two_dimensions == True:
             return edge_length, edge_x, edge_y, edge_index
         else:
             return edge_length, edge_x, edge_y, edge_z, edge_index
     else:
-        if two_dimensions is True:
+        if two_dimensions == True:
             return edge_length, edge_x, edge_y, edge_index, num_removed_edges
         else:
             return edge_length, edge_x, edge_y, edge_z, edge_index, num_removed_edges

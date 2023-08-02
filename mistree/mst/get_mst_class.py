@@ -73,7 +73,7 @@ class GetMST:
                 self._mode = 'tomographic celestial'
             else:
                 self._mode = 'spherical polar celestial'
-        if do_print is True:
+        if do_print == True:
             print('MST mode: ', self._mode, ' coordinates')
         self.k_neighbours = 20
         self.edge_length = None
@@ -194,15 +194,15 @@ class GetMST:
             The number of divisions used to divide the data set in each axis. Used for speeding up the branch
             finding algorithm when using many points (> 100000).
         """
-        if sub_divisions is 1:
+        if sub_divisions == 1:
             branch_index, rejected_branch_index = branches.get_branch_index(self.edge_index, self.edge_degree)
         else:
-            if self._mode is '2D':
+            if self._mode == '2D':
                 branch_index, rejected_branch_index = \
                     branches.get_branch_index_sub_divide(sub_divisions, self.edge_index, self.edge_degree,
                                                          box_size=box_size, edge_x=self.edge_x, edge_y=self.edge_y,
                                                          mode='Euclidean', two_dimension=True)
-            elif self._mode is '3D':
+            elif self._mode == '3D':
                 branch_index, rejected_branch_index = \
                     branches.get_branch_index_sub_divide(sub_divisions, self.edge_index, self.edge_degree,
                                                          box_size=box_size, edge_x=self.edge_x, edge_y=self.edge_y,
@@ -213,8 +213,8 @@ class GetMST:
                                                          box_size=None, phi=self.phi, theta=self.theta,
                                                          edge_phi=self.edge_phi, edge_theta=self.edge_theta, mode='spherical')
         self.branch_index = branch_index
-        if len(rejected_branch_index) is not 0:
-            if self.do_print is True:
+        if len(rejected_branch_index) != 0:
+            if self.do_print == True:
                 print(str(float(len(rejected_branch_index))) + ' branches were incompleted.')
         branch_length = [np.sum(self.edge_length[i]) for i in branch_index]
         self.branch_length = np.array(branch_length)
@@ -312,7 +312,7 @@ class GetMST:
         branch_index : list, optional
             A list of branches, where each branch is given as a list of the indexes of the member edges.
         """
-        if include_index is True:
+        if include_index == True:
             return self.degree, self.edge_length, self.branch_length, self.branch_shape, self.edge_index, \
                    self.branch_index
         else:
@@ -458,7 +458,7 @@ class GetMST:
                     self.__init__(ra=all_ra[group_indices], dec=all_dec[group_indices], r=all_r[group_indices])
                 else:
                     pass
-                if include_index is False:
+                if include_index == False:
                     _degree, _edge_length , _branch_length, _branch_shape = \
                         self._get_stats(sub_divisions=sub_divisions, k_neighbours=k_neighbours, scale_cut_length=scale_cut_length)
                 else:
@@ -474,10 +474,10 @@ class GetMST:
                     edge_length = np.concatenate([edge_length, _edge_length])
                     branch_length = np.concatenate([branch_length, _branch_length])
                     branch_shape = np.concatenate([branch_shape, _branch_shape])
-                if include_index is True:
+                if include_index == True:
                     edge_index.append(_edge_index)
                     branch_index.append(_branch_index)
-            if include_index is True:
+            if include_index == True:
                 return degree, edge_length, branch_length, branch_shape, edge_index, branch_index, groups
             else:
                 return degree, edge_length, branch_length, branch_shape
