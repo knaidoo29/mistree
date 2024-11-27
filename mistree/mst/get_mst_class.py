@@ -1,18 +1,12 @@
 # 'get_mst_class.py' contains the main class function for constructing a minimum
 # spanning tree from a given set of points.
 
-import os
-import sys
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path[:-3] + '/coordinates/')
-
 import numpy as np
-import coordinate_utility
+from .. import coords
 from . import construct
 from . import stats
 from . import branches
-#from . import density as dens
+from . import density as dens
 from . import partition
 
 
@@ -126,20 +120,20 @@ class GetMST:
         else:
             if self._mode == 'tomographic':
                 x, y, z = \
-                    coordinate_utility.spherical_2_unit_sphere(self.phi, self.theta, units=self.units)
+                    coords.spherical_2_unit_sphere(self.phi, self.theta, units=self.units)
                 self.x, self.y, self.z = x, y, z
             elif self._mode == 'spherical polar':
                 x, y, z = \
-                    coordinate_utility.spherical_2_cartesian(self.r, self.phi, self.theta, units=self.units)
+                    coords.spherical_2_cartesian(self.r, self.phi, self.theta, units=self.units)
                 self.x, self.y, self.z = x, y, z
             elif self._mode == 'tomographic celestial':
                 phi, theta, x, y, z = \
-                    coordinate_utility.celestial_2_unit_sphere(self.ra, self.dec, units=self.units, output='both')
+                    coords.celestial_2_unit_sphere(self.ra, self.dec, units=self.units, output='both')
                 self.x, self.y, self.z = x, y, z
                 self.phi, self.theta = phi, theta
             elif self._mode == 'spherical polar celestial':
                 phi, theta, x, y, z = \
-                    coordinate_utility.celestial_2_cartesian(self.r, self.ra, self.dec, units=self.units, output='both')
+                    coords.celestial_2_cartesian(self.r, self.ra, self.dec, units=self.units, output='both')
                 self.x, self.y, self.z = x, y, z
                 self.phi, self.theta = phi, theta
             else:

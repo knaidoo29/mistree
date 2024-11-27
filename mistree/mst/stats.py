@@ -2,11 +2,7 @@
 # quantities at present) of an input graph.
 
 import numpy as np
-#from . import utility_mst
-
-
-def _add2deg(degree, ind):
-    degree[ind] += 1
+from . import utility_mst
 
 
 def get_graph_degree(edge_index, number_of_nodes):
@@ -26,10 +22,7 @@ def get_graph_degree(edge_index, number_of_nodes):
     """
     index1, index2 = edge_index[0], edge_index[1]
     _number_of_edges = len(index1)
-    #degree = utility_mst.get_degree_for_index(index1, index2, number_of_nodes, _number_of_edges)
-    degree = np.zeros(number_of_nodes)
-    [_add2deg(degree, ind) for ind in index1]
-    [_add2deg(degree, ind) for ind in index2]
+    degree = utility_mst.get_degree_for_index(index1, index2, number_of_nodes, _number_of_edges)
     return degree
 
 

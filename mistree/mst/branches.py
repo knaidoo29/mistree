@@ -1,14 +1,8 @@
 # 'branches.py' finds and measures the length and shapes of branches in from a
 # given constructed MST.
 
-import os
-import sys
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path[:-3] + '/coordinates/')
-
 import numpy as np
-import coordinate_utility
+from .. import coords
 
 
 def get_branch_index(edge_index, edge_degree, branch_cutting_frequency=1000):
@@ -326,6 +320,6 @@ def get_branch_shape(edge_index, edge_degree, branch_index, branch_length, mode=
         dy = abs(y[branch_index_end1] - y[branch_index_end2])
         dz = abs(z[branch_index_end1] - z[branch_index_end2])
         branch_end_length = np.sqrt((dx ** 2.) + (dy ** 2.) + (dz ** 2.))
-        branch_end_length = coordinate_utility.perpendicular_distance_2_angle(branch_end_length)
+        branch_end_length = coords.perpendicular_distance_2_angle(branch_end_length)
     branch_shape = branch_end_length/branch_length
     return branch_shape
