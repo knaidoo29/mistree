@@ -126,7 +126,7 @@ def test_spherical_2_unit_sphere():
     assert y == 1.
     assert round(z, 6) == 0.
     x, y, z = mist.spherical_2_unit_sphere(45., 45.)
-    assert x == 0.5
+    assert round(x, 6) == 0.5
     assert round(y, 6) == 0.5
     assert round(z, 6) == round(np.sqrt(2.)/2., 6)
     x, y, z = mist.spherical_2_unit_sphere(0., 0., units='radians')
