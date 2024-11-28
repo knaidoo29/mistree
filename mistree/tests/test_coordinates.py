@@ -43,8 +43,8 @@ def test_celestial_2_cartesian():
     p = mist.celestial_2_cartesian(1., 0., 0., output='spherical')
     assert len(p) == 2
     phi, theta, x, y, z = mist.celestial_2_cartesian(1., 0., 90.)
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == 0.
+    assert phi == 0.
+    assert theta == 0.
     assert round(x, 6) == 0.
     assert round(y, 6) == 0.
     assert round(z, 6) == 1.
@@ -53,8 +53,8 @@ def test_celestial_2_cartesian():
     assert round(y, 6) == 0.
     assert round(z, 6) == 1.
     phi, theta, x, y, z = mist.celestial_2_cartesian(1., 0., 0.)
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == round(np.pi/2., 6)
+    assert phi == 0.
+    assert theta == round(np.pi/2., 6)
     assert round(x, 6) == 1.
     assert round(y, 6) == 0.
     assert round(z, 6) == 0.
@@ -63,8 +63,8 @@ def test_celestial_2_cartesian():
     assert round(y, 6) == 0.
     assert round(z, 6) == 0.
     phi, theta, x, y, z = mist.celestial_2_cartesian(1., 0., 45.)
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == round(np.pi/4., 6)
+    assert phi == 0.
+    assert theta == round(np.pi/4., 6)
     assert round(x, 6) == round(np.sqrt(2.)/2., 6)
     assert round(y, 6) == 0.
     assert round(z, 6) == round(np.sqrt(2.)/2., 6)
@@ -73,8 +73,8 @@ def test_celestial_2_cartesian():
     assert round(y, 6) == 0.
     assert round(z, 6) == round(np.sqrt(2.)/2., 6)
     phi, theta, x, y, z = mist.celestial_2_cartesian(1., 0., np.pi/2., units='radians')
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == 0.
+    assert phi == 0.
+    assert theta == 0.
     assert round(x, 6) == 0.
     assert round(y, 6) == 0.
     assert round(z, 6) == 1.
@@ -83,8 +83,8 @@ def test_celestial_2_cartesian():
     assert round(y, 6) == 0.
     assert round(z, 6) == 1.
     phi, theta, x, y, z = mist.celestial_2_cartesian(1., 0., 0., units='radians')
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == round(np.pi/2., 6)
+    assert phi == 0.
+    assert theta == round(np.pi/2., 6)
     assert round(x, 6) == 1.
     assert round(y, 6) == 0.
     assert round(z, 6) == 0.
@@ -93,8 +93,8 @@ def test_celestial_2_cartesian():
     assert round(y, 6) == 0.
     assert round(z, 6) == 0.
     phi, theta, x, y, z = mist.celestial_2_cartesian(1., 0., np.pi/4., units='radians')
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == round(np.pi/4., 6)
+    assert phi == 0.
+    assert theta == round(np.pi/4., 6)
     assert round(x, 6) == round(np.sqrt(2.)/2., 6)
     assert round(y, 6) == 0.
     assert round(z, 6) == round(np.sqrt(2.)/2., 6)
@@ -156,8 +156,8 @@ def test_celestial_2_unit_sphere():
     p = mist.celestial_2_unit_sphere(0., 0., output='cartesian')
     assert len(p) == 3
     phi, theta, x, y, z = mist.celestial_2_unit_sphere(0., 90.)
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == 0.
+    assert phi == 0.
+    assert theta == 0.
     assert round(x, 6) == 0.
     assert round(y, 6) == 0.
     assert round(z, 6) == 1.
@@ -166,8 +166,8 @@ def test_celestial_2_unit_sphere():
     assert round(y, 6) == 0.
     assert round(z, 6) == 1.
     phi, theta, x, y, z = mist.celestial_2_unit_sphere(0., 0.)
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == round(np.pi/2., 6)
+    assert phi == 0.
+    assert theta == round(np.pi/2., 6)
     assert round(x, 6) == 1.
     assert round(y, 6) == 0.
     assert round(z, 6) == 0.
@@ -176,8 +176,8 @@ def test_celestial_2_unit_sphere():
     assert round(y, 6) == 0.
     assert round(z, 6) == 0.
     phi, theta, x, y, z = mist.celestial_2_unit_sphere(0., 45.)
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == round(np.pi/4., 6)
+    assert phi == 0.
+    assert theta == round(np.pi/4., 6)
     assert round(x, 6) == round(np.sqrt(2.)/2., 6)
     assert round(y, 6) == 0.
     assert round(z, 6) == round(np.sqrt(2.)/2., 6)
@@ -186,8 +186,8 @@ def test_celestial_2_unit_sphere():
     assert round(y, 6) == 0.
     assert round(z, 6) == round(np.sqrt(2.)/2., 6)
     phi, theta, x, y, z = mist.celestial_2_unit_sphere(0., np.pi/2., units='radians')
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == 0.
+    assert phi == 0.
+    assert theta == 0.
     assert round(x, 6) == 0.
     assert round(y, 6) == 0.
     assert round(z, 6) == 1.
@@ -196,8 +196,8 @@ def test_celestial_2_unit_sphere():
     assert round(y, 6) == 0.
     assert round(z, 6) == 1.
     phi, theta, x, y, z = mist.celestial_2_unit_sphere(0., 0., units='radians')
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == round(np.pi/2., 6)
+    assert phi == 0.
+    assert theta == round(np.pi/2., 6)
     assert round(x, 6) == 1.
     assert round(y, 6) == 0.
     assert round(z, 6) == 0.
@@ -206,8 +206,8 @@ def test_celestial_2_unit_sphere():
     assert round(y, 6) == 0.
     assert round(z, 6) == 0.
     phi, theta, x, y, z = mist.celestial_2_unit_sphere(0., np.pi/4., units='radians')
-    assert round(phi, 6) == 0.
-    assert round(theta, 6) == round(np.pi/4., 6)
+    assert phi == 0.
+    assert theta == round(np.pi/4., 6)
     assert round(x, 6) == round(np.sqrt(2.)/2., 6)
     assert round(y, 6) == 0.
     assert round(z, 6) == round(np.sqrt(2.)/2., 6)
