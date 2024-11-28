@@ -1,12 +1,7 @@
 # MiSTree
 
-Author:         Krishna Naidoo                          
-Version:        1.2.2                               
-Homepage:       https://github.com/knaidoo29/mistree    
-Documentation:  https://knaidoo29.github.io/mistreedoc/
 
-[![Build Status](https://travis-ci.org/knaidoo29/mistree.svg?branch=master)](https://travis-ci.org/knaidoo29/mistree) [![codecov](https://codecov.io/gh/knaidoo29/mistree/branch/master/graph/badge.svg)](https://codecov.io/gh/knaidoo29/mistree) [![PyPI version](https://badge.fury.io/py/mistree.svg)](https://badge.fury.io/py/mistree) [![status](https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28/status.svg)](https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28) [![DOI](https://zenodo.org/badge/170473458.svg)](https://zenodo.org/badge/latestdoi/170473458) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/knaidoo29/mistree/master?filepath=tutorials%2Fnotebooks%2F)
-[![ascl](https://img.shields.io/badge/ascl-1910.016-blue.svg?colorB=262255)](http://ascl.net/1910.016)
+[![MiSTree Version](https://img.shields.io/badge/Version-2.0.0-green)](https://img.shields.io/badge/Version-2.0.0-green) [![PyPI version](https://badge.fury.io/py/mistree.svg)](https://badge.fury.io/py/mistree) [![Python Version Support](https://img.shields.io/badge/Python-3.7%20|%203.8%20|%203.9%20|%203.10%20|%203.11-blue)](https://img.shields.io/badge/Python-3.7%20|%203.8%20|%203.9-blue) [![Ubuntu](https://github.com/knaidoo29/mistree/actions/workflows/python-package.yml/badge.svg?branch=pure_python)](https://github.com/knaidoo29/mistree/actions/workflows/python-package.yml) [![MacOS](https://github.com/knaidoo29/mistree/actions/workflows/python-package_macos.yml/badge.svg?branch=pure_python)](https://github.com/knaidoo29/mistree/actions/workflows/python-package_macos.yml) [![Windows](https://github.com/knaidoo29/mistree/actions/workflows/python-package_windows.yml/badge.svg?branch=pure_python)](https://github.com/knaidoo29/mistree/actions/workflows/python-package_windows.yml) [![coverage](https://raw.githubusercontent.com/knaidoo29/mistree/refs/heads/pure_python/coverage.svg)](https://raw.githubusercontent.com/knaidoo29/mistree/refs/heads/pure_python/coverage.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![status](https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28/status.svg)](https://joss.theoj.org/papers/461d79e9e5faf21029c0a7b1c928be28) [![ascl](https://img.shields.io/badge/ascl-1910.016-blue.svg?colorB=262255)](http://ascl.net/1910.016) [![DOI](https://zenodo.org/badge/170473458.svg)](https://zenodo.org/badge/latestdoi/170473458) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/knaidoo29/mistree/master?filepath=tutorials%2Fnotebooks%2F)
 
 ## Introduction
 
@@ -14,12 +9,11 @@ The *minimum spanning tree* (MST), a graph constructed from a distribution of po
 
 ## Dependencies
 
-* Python 2.7 or 3.4+
 * `numpy`
+* `numba`
 * `matplotlib`
 * `scipy`
 * `scikit-learn`
-* `f2py` (should be installed with numpy)
 
 For testing you will require `nose` or `pytest`.
 
