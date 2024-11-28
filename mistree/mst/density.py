@@ -44,7 +44,7 @@ def variable_vs_density(x, y, dx, x_param, y_param, param, box_size, z=None, z_p
         x_div, y_div = np.meshgrid(xx, xx, indexing='ij')
         x_div, y_div = np.ndarray.flatten(x_div), np.ndarray.flatten(y_div)
         mean_param = utility_density.get_param_2d(x_param, y_param, param, dx, length, len(x_div), len(x_param))
-        if get_density is True:
+        if get_density == True:
             counts = utility_density.get_counts_2d(x, y, dx, length, len(x_div), len(x))
             density = counts / np.mean(counts)
             return mean_param, density
@@ -55,7 +55,7 @@ def variable_vs_density(x, y, dx, x_param, y_param, param, box_size, z=None, z_p
         x_div, y_div, z_div = np.ndarray.flatten(x_div), np.ndarray.flatten(y_div), np.ndarray.flatten(z_div)
         mean_param = utility_density.get_param_3d(x_param, y_param, z_param, param, dx, length, len(x_div),
                                                   len(x_param))
-        if get_density is True:
+        if get_density == True:
             counts = utility_density.get_counts_3d(x, y, z, dx, length, len(x_div), len(x))
             density = counts / np.mean(counts)
             return mean_param, density
